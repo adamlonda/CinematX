@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9122EE8C21FA41CC007FE01B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		91A62FCC21F8E78300718A87 /* CinematX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinematX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A62FCF21F8E78300718A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A62FD121F8E78300718A87 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +298,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				91A62FD421F8E78300718A87 /* Base */,
+				9122EE8C21FA41CC007FE01B /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
