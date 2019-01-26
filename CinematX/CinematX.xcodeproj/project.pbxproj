@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		268BD53DCAEB8231D6471495 /* Pods_CinematX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63B8C37750DFD9B79244BA0 /* Pods_CinematX.framework */; };
+		916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */; };
+		916B0EA821FC67E2008F8671 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA721FC67E2008F8671 /* NetworkingService.swift */; };
+		916B0EAA21FC8BC1008F8671 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */; };
 		91A62FD021F8E78300718A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FCF21F8E78300718A87 /* AppDelegate.swift */; };
 		91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */; };
 		91A62FD521F8E78300718A87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A62FD321F8E78300718A87 /* Main.storyboard */; };
@@ -34,7 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematX.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinematX/Pods-CinematX.release.xcconfig"; sourceTree = "<group>"; };
 		9122EE8C21FA41CC007FE01B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
+		916B0EA721FC67E2008F8671 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
 		91A62FCC21F8E78300718A87 /* CinematX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinematX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A62FCF21F8E78300718A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +56,8 @@
 		91A62FEB21F8E78600718A87 /* CinematXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CinematXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A62FEF21F8E78600718A87 /* CinematXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinematXUITests.swift; sourceTree = "<group>"; };
 		91A62FF121F8E78600718A87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B63B8C37750DFD9B79244BA0 /* Pods_CinematX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CinematX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1513749033EEED0D170EA62 /* Pods-CinematX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CinematX/Pods-CinematX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				268BD53DCAEB8231D6471495 /* Pods_CinematX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,13 +86,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80177B8F6DBD78EAE952E217 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D1513749033EEED0D170EA62 /* Pods-CinematX.debug.xcconfig */,
+				56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		916B0EA121FC5C67008F8671 /* CinematXProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */,
+			);
+			path = CinematXProtocols;
+			sourceTree = "<group>";
+		};
+		916B0EA621FC67BA008F8671 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				916B0EA721FC67E2008F8671 /* NetworkingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		91A62FC321F8E78300718A87 = {
 			isa = PBXGroup;
 			children = (
+				916B0EA121FC5C67008F8671 /* CinematXProtocols */,
 				91A62FCE21F8E78300718A87 /* CinematX */,
 				91A62FE321F8E78600718A87 /* CinematXTests */,
 				91A62FEE21F8E78600718A87 /* CinematXUITests */,
 				91A62FCD21F8E78300718A87 /* Products */,
+				80177B8F6DBD78EAE952E217 /* Pods */,
+				A05A72C09A006A616924AE30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,12 +137,14 @@
 		91A62FCE21F8E78300718A87 /* CinematX */ = {
 			isa = PBXGroup;
 			children = (
+				916B0EA621FC67BA008F8671 /* Services */,
 				91A62FCF21F8E78300718A87 /* AppDelegate.swift */,
 				91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */,
 				91A62FD321F8E78300718A87 /* Main.storyboard */,
 				91A62FD621F8E78500718A87 /* Assets.xcassets */,
 				91A62FD821F8E78500718A87 /* LaunchScreen.storyboard */,
 				91A62FDB21F8E78500718A87 /* Info.plist */,
+				916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */,
 			);
 			path = CinematX;
 			sourceTree = "<group>";
@@ -126,6 +167,14 @@
 			path = CinematXUITests;
 			sourceTree = "<group>";
 		};
+		A05A72C09A006A616924AE30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B63B8C37750DFD9B79244BA0 /* Pods_CinematX.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,9 +182,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 91A62FF421F8E78600718A87 /* Build configuration list for PBXNativeTarget "CinematX" */;
 			buildPhases = (
+				81D921B05E45B32C3A237D5E /* [CP] Check Pods Manifest.lock */,
 				91A62FC821F8E78300718A87 /* Sources */,
 				91A62FC921F8E78300718A87 /* Frameworks */,
 				91A62FCA21F8E78300718A87 /* Resources */,
+				8BE6F3AA7B2C60D60ADD91AF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,13 +303,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		81D921B05E45B32C3A237D5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CinematX-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BE6F3AA7B2C60D60ADD91AF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CinematX/Pods-CinematX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/SwinjectStoryboard/SwinjectStoryboard.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwinjectStoryboard.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CinematX/Pods-CinematX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		91A62FC821F8E78300718A87 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */,
 				91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */,
 				91A62FD021F8E78300718A87 /* AppDelegate.swift in Sources */,
+				916B0EAA21FC8BC1008F8671 /* SwinjectStoryboard.swift in Sources */,
+				916B0EA821FC67E2008F8671 /* NetworkingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +535,7 @@
 		};
 		91A62FF521F8E78600718A87 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1513749033EEED0D170EA62 /* Pods-CinematX.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +554,7 @@
 		};
 		91A62FF621F8E78600718A87 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

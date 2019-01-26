@@ -9,10 +9,15 @@
 import UIKit
 
 class PopularMoviesViewController: UIViewController {
+    var network: NetworkingProtocol?
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let response = network!.call(url: "http://urlgoes.here", withMethod: HttpMethod.get)
     }
 }
 
