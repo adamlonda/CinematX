@@ -14,6 +14,6 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
     }
     
     func getPopularMovies() -> [MovieItem] {
-        return [MovieItem(title: network.call(url: "http://urlgoes.here", withMethod: HttpMethod.get))]
+        return network.get(url: "http://popular-movies.url")
     }
 }

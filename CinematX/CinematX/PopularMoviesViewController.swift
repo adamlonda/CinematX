@@ -17,7 +17,7 @@ class PopularMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let popularMovies = movieDb!.getPopularMovies()
+        let popularMovies: [MovieItem] = movieDb!.getPopularMovies()
     }
 }
 
