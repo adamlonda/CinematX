@@ -16,8 +16,12 @@ extension SwinjectStoryboard {
             _ in NetworkingService()
         }
         
+        swinject.register(MovieDatabaseProtocol.self) {
+            r in TheMovieDatabaseService(network: r.resolve(NetworkingProtocol.self)!)
+        }
+        
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in
-            c.network = r.resolve(NetworkingProtocol.self)
+            c.movieDb = r.resolve(MovieDatabaseProtocol.self)
         }
     }
 }

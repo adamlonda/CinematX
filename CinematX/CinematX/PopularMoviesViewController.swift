@@ -9,7 +9,7 @@
 import UIKit
 
 class PopularMoviesViewController: UIViewController {
-    var network: NetworkingProtocol?
+    var movieDb: MovieDatabaseProtocol?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -17,7 +17,7 @@ class PopularMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let response = network!.call(url: "http://urlgoes.here", withMethod: HttpMethod.get)
+        let popularMovies = movieDb!.getPopularMovies()
     }
 }
 
