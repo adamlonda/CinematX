@@ -6,10 +6,6 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
-enum HttpMethod: String {
-    case get = "GET"
-}
-
 protocol NetworkingProtocol {
-    func call(url: String, withMethod: HttpMethod) -> String
+    func get<T>(url: String) -> T
 }

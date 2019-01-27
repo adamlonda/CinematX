@@ -7,7 +7,7 @@
 //
 
 class NetworkingService: NetworkingProtocol {
-    func call(url: String, withMethod: HttpMethod) -> String {
-        return "\(withMethod.rawValue) response goes here."
+    func get<T>(url: String) -> T {
+        return [MovieItem(title: "Movie title goes here")] as! T;
     }
 }
