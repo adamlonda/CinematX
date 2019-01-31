@@ -10,14 +10,30 @@ import UIKit
 
 class PopularMoviesViewController: UIViewController {
     var movieDb: MovieDatabaseProtocol?
+    private var popularMovies: [MovieItem]?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    private func signal(error: Error) {
+        do {
+            throw error
+        } catch {
+            print(error)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let popularMovies: [MovieItem] = movieDb!.getPopularMovies()
+        movieDb!.getPopularMovies(completion: { result in
+            switch result {
+            case .Success(let movies):
+                self.popularMovies = movies
+            case .Failure(let e):
+                self.signal(error: e)
+            }
+        })
     }
 }
 

@@ -7,5 +7,14 @@
 //
 
 protocol NetworkingProtocol {
-    func get<T>(url: String) -> T
+    associatedtype ResponseType
+    func get(url: String, completion: @escaping (Result<ResponseType>) -> Void)
+}
+
+class NetworkingWithResult<T>: NetworkingProtocol {
+    typealias ResponseType = T
+    
+    func get(url: String, completion: @escaping (Result<T>) -> Void) {
+        fatalError()
+    }
 }
