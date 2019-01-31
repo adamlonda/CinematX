@@ -9,38 +9,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CinematX/Services/NetworkingService.swift"
-            timestampString = "570632902.226815"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CinematX/PopularMoviesViewController.swift"
-            timestampString = "570632902.227067"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CinematX/PopularMoviesViewController.swift"
-            timestampString = "570632902.227141"
+            timestampString = "570643497.242185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -56,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CinematX/PopularMoviesViewController.swift"
-            timestampString = "570632902.227262"
+            timestampString = "570643497.242592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -71,60 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CinematX/Services/TheMovieDatabaseService.swift"
-            timestampString = "570632902.227447"
+            filePath = "CinematX/PopularMoviesViewController.swift"
+            timestampString = "570643497.242906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CinematX/Services/ParsingService.swift"
-            timestampString = "570632902.2275881"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "getPopularMovies(from:)"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CinematX.ParsingService.getPopularMovies(from: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Array&lt;CinematX.MovieItem&gt;"
-                  moduleName = "CinematX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamlonda/Documents/CinematX/CinematX/CinematX/Services/ParsingService.swift"
-                  timestampString = "570632902.511389"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "432">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; CinematX.MovieItem in CinematX.ParsingService.getPopularMovies(from: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Swift.Array&lt;CinematX.MovieItem&gt;"
-                  moduleName = "CinematX"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/adamlonda/Documents/CinematX/CinematX/CinematX/Services/ParsingService.swift"
-                  timestampString = "570632902.515689"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "42">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

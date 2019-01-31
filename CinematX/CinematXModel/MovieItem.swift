@@ -8,8 +8,10 @@
 
 struct MovieItem {
     let title: String
+    let overview: String
     
-    init(title: String) {
+    init(title: String, overview: String) {
         self.title = title
+        self.overview = overview
     }
 }

@@ -9,8 +9,12 @@
 class ParsingService: Parser<[String: Any]> {
     override func getPopularMovies(from: [String: Any]) -> [MovieItem] {
         let results = from["results"] as! [[String : Any]]
+        
         return results.map({ (result: [String: Any]) in
-            MovieItem(title: result["title"] as! String)
+            MovieItem(
+                title: result["title"] as! String,
+                overview: result["overview"] as! String
+            )
         })
     }
 }
