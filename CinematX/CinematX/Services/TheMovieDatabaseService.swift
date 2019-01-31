@@ -21,8 +21,9 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
-    func getPopularMovies(completion: @escaping (Result<[MovieItem]>) -> Void) {
-        network.get(url: "\(baseUrl)/movie/popular?api_key=\(apiKey)", completion: { result in
+    func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void) {
+        let url = "\(baseUrl)/movie/popular?api_key=\(apiKey)&language=\(languageCode)"
+        network.get(url: url, completion: { result in
             switch result {
             case .Success(let jsonData):
                 completion(Result{return self.parser.getPopularMovies(from: jsonData)})

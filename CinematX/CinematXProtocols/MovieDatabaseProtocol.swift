@@ -7,5 +7,5 @@
 //
 
 protocol MovieDatabaseProtocol {
-    func getPopularMovies(completion: @escaping (Result<[MovieItem]>) -> Void)
+    func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void)
 }

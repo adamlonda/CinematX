@@ -12,6 +12,8 @@ class PopularMoviesViewController: UIViewController {
     var movieDb: MovieDatabaseProtocol?
     private var popularMovies: [MovieItem]?
     
+    private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -26,7 +28,7 @@ class PopularMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieDb!.getPopularMovies(completion: { result in
+        movieDb!.getPopularMovies(languageCode: languageCode, completion: { result in
             switch result {
             case .Success(let movies):
                 self.popularMovies = movies
