@@ -13,7 +13,7 @@ enum NetworkingServiceError: Error {
     case unexpectedResponse
 }
 
-class NetworkingService: NetworkingProtocol {
+class NetworkingService: NetworkingWith<UIImage> {
     // Inspired by
     // https://gist.github.com/cmoulton/9591be2b10043e6811a845f6dcbe821a#file-simple-alamofire-calls-in-swift-4
     // https://medium.com/@shenghuawu/simple-ios-api-client-with-alamofire-cfb2cadf6c11
@@ -31,14 +31,14 @@ class NetworkingService: NetworkingProtocol {
         withCompletion(Result{return data as! Out})
     }
     
-    func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void) {
+    override func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void) {
         Alamofire.request(url)
             .responseJSON { response in
                 self.handleResponse(withCompletion: completion, response: response)
         }
     }
     
-    func getImage<OfImageType>(url: String, completion: @escaping (Result<OfImageType>) -> Void) {
+    override func getImage(url: String, completion: @escaping (Result<UIImage>) -> Void) {
         Alamofire.request(url)
             .responseImage { response in
                 self.handleResponse(withCompletion: completion, response: response)

@@ -9,7 +9,7 @@
 import UIKit
 
 class PopularMoviesViewController: UIViewController {
-    var movieDb: MovieDatabaseProtocol?
+    var movieDb: MovieDatabaseWith<UIImage>?
     private var popularMovies: [MovieItem]?
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")

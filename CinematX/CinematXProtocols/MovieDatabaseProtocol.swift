@@ -7,5 +7,12 @@
 //
 
 protocol MovieDatabaseProtocol {
+    associatedtype ImageType
     func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void)
+}
+
+class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
+    func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void) {
+        fatalError()
+    }
 }

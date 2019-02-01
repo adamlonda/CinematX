@@ -11,10 +11,11 @@ import SwinjectStoryboard
 extension SwinjectStoryboard {
     class func setup () {
         typealias JsonResponse = [String: Any]
+        typealias ImageType = UIImage
         
         let swinject = defaultContainer
         
-        swinject.register(NetworkingProtocol.self) {
+        swinject.register(NetworkingWith<ImageType>.self) {
             _ in NetworkingService()
         }
         
@@ -22,14 +23,14 @@ extension SwinjectStoryboard {
             _ in ParsingService()
         }
         
-        swinject.register(MovieDatabaseProtocol.self) {
+        swinject.register(MovieDatabaseWith<ImageType>.self) {
             r in TheMovieDatabaseService(
-                network: r.resolve(NetworkingProtocol.self)!,
+                network: r.resolve(NetworkingWith<ImageType>.self)!,
                 parser: r.resolve(Parser<JsonResponse>.self)!)
         }
         
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in
-            c.movieDb = r.resolve(MovieDatabaseProtocol.self)
+            c.movieDb = r.resolve(MovieDatabaseWith<ImageType>.self)
         }
     }
 }

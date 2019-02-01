@@ -6,9 +6,18 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
-import Foundation
-
 protocol NetworkingProtocol {
+    associatedtype ImageType
     func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void)
-    func getImage<OfImageType>(url: String, completion: @escaping (Result<OfImageType>) -> Void)
+    func getImage(url: String, completion: @escaping (Result<ImageType>) -> Void)
+}
+
+class NetworkingWith<ImageType>: NetworkingProtocol {
+    func getJson(url: String, completion: @escaping (Result<[String : Any]>) -> Void) {
+        fatalError()
+    }
+    
+    func getImage(url: String, completion: @escaping (Result<ImageType>) -> Void) {
+        fatalError()
+    }
 }
