@@ -7,34 +7,41 @@
 //
 
 import Alamofire
+import AlamofireImage
 
 enum NetworkingServiceError: Error {
     case unexpectedResponse
 }
 
-class NetworkingService: NetworkingWithResult<[String: Any]> {
+class NetworkingService: NetworkingProtocol {
     // Inspired by
     // https://gist.github.com/cmoulton/9591be2b10043e6811a845f6dcbe821a#file-simple-alamofire-calls-in-swift-4
     // https://medium.com/@shenghuawu/simple-ios-api-client-with-alamofire-cfb2cadf6c11
-    override func get(url: String, completion: @escaping (Result<[String: Any]>) -> Void) {
+    private func handleResponse<In, Out>(withCompletion: (Result<Out>) -> Void, response: DataResponse<In>) {
+        guard response.result.error == nil else {
+            withCompletion(Result{ throw response.result.error! })
+            return
+        }
+        
+        guard let data = response.result.value else {
+            withCompletion(Result{ throw NetworkingServiceError.unexpectedResponse })
+            return
+        }
+        
+        withCompletion(Result{return data as! Out})
+    }
+    
+    func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void) {
         Alamofire.request(url)
             .responseJSON { response in
-                guard response.result.error == nil else {
-                    completion(Result{ throw response.result.error! })
-                    return
-                }
-                
-                guard let json = response.result.value as? [String: Any] else {
-                    if let error = response.result.error {
-                        completion(Result{ throw error })
-                        return
-                    }
-                    
-                    completion(Result{ throw NetworkingServiceError.unexpectedResponse })
-                    return
-                }
-                
-                completion(Result{return json})
+                self.handleResponse(withCompletion: completion, response: response)
+        }
+    }
+    
+    func getImage<OfImageType>(url: String, completion: @escaping (Result<OfImageType>) -> Void) {
+        Alamofire.request(url)
+            .responseImage { response in
+                self.handleResponse(withCompletion: completion, response: response)
         }
     }
 }

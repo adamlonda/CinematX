@@ -10,22 +10,22 @@ import SwinjectStoryboard
 
 extension SwinjectStoryboard {
     class func setup () {
-        typealias NetResponse = [String: Any]
+        typealias JsonResponse = [String: Any]
         
         let swinject = defaultContainer
         
-        swinject.register(NetworkingWithResult<NetResponse>.self) {
+        swinject.register(NetworkingProtocol.self) {
             _ in NetworkingService()
         }
         
-        swinject.register(Parser<NetResponse>.self) {
+        swinject.register(Parser<JsonResponse>.self) {
             _ in ParsingService()
         }
         
         swinject.register(MovieDatabaseProtocol.self) {
             r in TheMovieDatabaseService(
-                network: r.resolve(NetworkingWithResult<NetResponse>.self)!,
-                parser: r.resolve(Parser<NetResponse>.self)!)
+                network: r.resolve(NetworkingProtocol.self)!,
+                parser: r.resolve(Parser<JsonResponse>.self)!)
         }
         
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in

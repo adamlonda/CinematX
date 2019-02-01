@@ -6,15 +6,9 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
-protocol NetworkingProtocol {
-    associatedtype ResponseType
-    func get(url: String, completion: @escaping (Result<ResponseType>) -> Void)
-}
+import Foundation
 
-class NetworkingWithResult<T>: NetworkingProtocol {
-    typealias ResponseType = T
-    
-    func get(url: String, completion: @escaping (Result<T>) -> Void) {
-        fatalError()
-    }
+protocol NetworkingProtocol {
+    func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void)
+    func getImage<OfImageType>(url: String, completion: @escaping (Result<OfImageType>) -> Void)
 }
