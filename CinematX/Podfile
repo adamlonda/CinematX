@@ -6,4 +6,5 @@ target 'CinematX' do
     pod 'Swinject'
     pod 'SwinjectStoryboard'
     pod 'Alamofire'
+    pod 'AlamofireImage'
 end
