@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.7.3)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
+  - Microfutures (0.1.2)
   - Swinject (2.4.1)
   - SwinjectStoryboard (2.0.2):
     - Swinject (~> 2.4)
@@ -9,6 +10,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
+  - Microfutures
   - Swinject
   - SwinjectStoryboard
 
@@ -16,15 +18,17 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
+    - Microfutures
     - Swinject
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  Microfutures: a7256087d89f835e8b2fdb72f7d6864ad3dd3fd9
   Swinject: f7f15a9672e99328c1f07f277091087917215700
   SwinjectStoryboard: 365698aec11b57c6b14a3c1f52d0308759d377bf
 
-PODFILE CHECKSUM: 2f1446f80c19be152a0bc6695180da957d7d18d1
+PODFILE CHECKSUM: 43e71a55ff7361fbc82dd1d9311da237cede88f4
 
 COCOAPODS: 1.5.3
