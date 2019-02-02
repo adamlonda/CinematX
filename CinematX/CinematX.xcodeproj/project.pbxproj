@@ -11,7 +11,6 @@
 		910E7AE121FD89EC0015CDB2 /* MovieDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE021FD89EC0015CDB2 /* MovieDatabaseProtocol.swift */; };
 		910E7AE321FD8B7F0015CDB2 /* TheMovieDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE221FD8B7F0015CDB2 /* TheMovieDatabaseService.swift */; };
 		910E7AE621FD8C890015CDB2 /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE521FD8C890015CDB2 /* MovieItem.swift */; };
-		910E7AEC2202D3440015CDB2 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AEB2202D3440015CDB2 /* Result.swift */; };
 		910E7AEE2202EBAF0015CDB2 /* ParsingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AED2202EBAF0015CDB2 /* ParsingProtocol.swift */; };
 		910E7AF02202F08A0015CDB2 /* ParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AEF2202F08A0015CDB2 /* ParsingService.swift */; };
 		910E7AF32203865E0015CDB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 910E7AF12203865E0015CDB2 /* Localizable.strings */; };
@@ -49,7 +48,6 @@
 		910E7AE021FD89EC0015CDB2 /* MovieDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDatabaseProtocol.swift; sourceTree = "<group>"; };
 		910E7AE221FD8B7F0015CDB2 /* TheMovieDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDatabaseService.swift; sourceTree = "<group>"; };
 		910E7AE521FD8C890015CDB2 /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
-		910E7AEB2202D3440015CDB2 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		910E7AED2202EBAF0015CDB2 /* ParsingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingProtocol.swift; sourceTree = "<group>"; };
 		910E7AEF2202F08A0015CDB2 /* ParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingService.swift; sourceTree = "<group>"; };
 		910E7AF22203865E0015CDB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CinematX/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -117,14 +115,6 @@
 			path = CinematXModel;
 			sourceTree = "<group>";
 		};
-		910E7AEA2202D31A0015CDB2 /* CinematXCommon */ = {
-			isa = PBXGroup;
-			children = (
-				910E7AEB2202D3440015CDB2 /* Result.swift */,
-			);
-			path = CinematXCommon;
-			sourceTree = "<group>";
-		};
 		916B0EA121FC5C67008F8671 /* CinematXProtocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,7 +138,6 @@
 		91A62FC321F8E78300718A87 = {
 			isa = PBXGroup;
 			children = (
-				910E7AEA2202D31A0015CDB2 /* CinematXCommon */,
 				910E7AE421FD8C0D0015CDB2 /* CinematXModel */,
 				916B0EA121FC5C67008F8671 /* CinematXProtocols */,
 				91A62FCE21F8E78300718A87 /* CinematX */,
@@ -401,7 +390,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				910E7AEC2202D3440015CDB2 /* Result.swift in Sources */,
 				916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */,
 				910E7AE621FD8C890015CDB2 /* MovieItem.swift in Sources */,
 				91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */,

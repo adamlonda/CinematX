@@ -6,18 +6,20 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import Microfutures
+
 protocol NetworkingProtocol {
     associatedtype ImageType
-    func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void)
-    func getImage(url: String, completion: @escaping (Result<ImageType>) -> Void)
+    func getJson(url: String) -> Future<[String: Any]>
+    func getImage(url: String) -> Future<ImageType>
 }
 
 class NetworkingWith<ImageType>: NetworkingProtocol {
-    func getJson(url: String, completion: @escaping (Result<[String : Any]>) -> Void) {
+    func getJson(url: String) -> Future<[String: Any]> {
         fatalError()
     }
     
-    func getImage(url: String, completion: @escaping (Result<ImageType>) -> Void) {
+    func getImage(url: String) -> Future<ImageType> {
         fatalError()
     }
 }

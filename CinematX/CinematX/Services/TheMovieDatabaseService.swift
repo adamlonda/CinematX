@@ -6,6 +6,7 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import Microfutures
 import UIKit
 
 class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
@@ -27,28 +28,23 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     }
     
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
-    private func getMoviePoster(path: String, completion: @escaping (Result<ImageType>) -> Void) {
-        let url = "\(baseImgUrl)\(imageDim)\(path)"
-        network.getImage(url: url, completion: { result in
-            switch result {
-            case .Success(let image):
-                completion(Result{return image})
-            case .Failure(let error):
-                completion(Result{throw error})
-            }
-        })
+    private func getMoviePoster(path: String) -> Future<ImageType> {
+        let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
+        return self.network.getImage(url: url)
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
-    override func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void) {
-        let url = "\(baseApiUrl)/movie/popular?api_key=\(apiKey)&language=\(languageCode)"
-        network.getJson(url: url, completion: { result in
-            switch result {
-            case .Success(let jsonData):
-                completion(Result{return self.parser.getPopularMovies(from: jsonData)})
-            case .Failure(let error):
-                completion(Result{throw error})
-            }
-        })
+    override func getPopularMovies(languageCode: String) -> Future<[MovieItem]> {
+        return Future<[MovieItem]> { completion in
+            let url = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+            self.network.getJson(url: url)
+            .subscribe(
+                onNext: { json in
+                    completion(.success(self.parser.getPopularMovies(from: json)))
+            },
+                onError: { error in
+                    completion(.failure(error))
+            })
+        }
     }
 }

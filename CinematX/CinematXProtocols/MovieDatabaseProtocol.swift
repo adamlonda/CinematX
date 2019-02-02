@@ -6,13 +6,15 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import Microfutures
+
 protocol MovieDatabaseProtocol {
     associatedtype ImageType
-    func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void)
+    func getPopularMovies(languageCode: String) -> Future<[MovieItem]>
 }
 
 class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
-    func getPopularMovies(languageCode: String, completion: @escaping (Result<[MovieItem]>) -> Void) {
+    func getPopularMovies(languageCode: String) -> Future<[MovieItem]> {
         fatalError()
     }
 }

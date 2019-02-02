@@ -28,13 +28,14 @@ class PopularMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        movieDb!.getPopularMovies(languageCode: languageCode, completion: { result in
-            switch result {
-            case .Success(let movies):
+        movieDb!.getPopularMovies(languageCode: languageCode)
+        .subscribe(
+            onNext: { movies in
                 self.popularMovies = movies
-            case .Failure(let e):
-                self.signal(error: e)
-            }
+                
+        },
+            onError: { error in
+                self.signal(error: error)
         })
     }
 }

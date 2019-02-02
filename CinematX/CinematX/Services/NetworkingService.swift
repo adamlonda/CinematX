@@ -8,40 +8,45 @@
 
 import Alamofire
 import AlamofireImage
+import Microfutures
 
 enum NetworkingServiceError: Error {
-    case unexpectedResponse
+    case emptyResponse
 }
 
+// Inspired by
+// https://gist.github.com/cmoulton/9591be2b10043e6811a845f6dcbe821a#file-simple-alamofire-calls-in-swift-4
+// https://medium.com/ios-os-x-development/managing-async-code-in-swift-d7be44cae89f
 class NetworkingService: NetworkingWith<UIImage> {
-    // Inspired by
-    // https://gist.github.com/cmoulton/9591be2b10043e6811a845f6dcbe821a#file-simple-alamofire-calls-in-swift-4
-    // https://medium.com/@shenghuawu/simple-ios-api-client-with-alamofire-cfb2cadf6c11
-    private func handleResponse<In, Out>(withCompletion: (Result<Out>) -> Void, response: DataResponse<In>) {
+    private func handle<In, Out>(response: DataResponse<In>, completion: (Microfutures.Result<Out>) -> Void) {
         guard response.result.error == nil else {
-            withCompletion(Result{ throw response.result.error! })
+            completion(.failure(response.result.error!))
             return
         }
         
         guard let data = response.result.value else {
-            withCompletion(Result{ throw NetworkingServiceError.unexpectedResponse })
+            completion(.failure(NetworkingServiceError.emptyResponse))
             return
         }
         
-        withCompletion(Result{return data as! Out})
+        completion(.success(data as! Out))
     }
     
-    override func getJson(url: String, completion: @escaping (Result<[String: Any]>) -> Void) {
-        Alamofire.request(url)
-            .responseJSON { response in
-                self.handleResponse(withCompletion: completion, response: response)
+    override func getJson(url: String) -> Future<[String: Any]> {
+        return Future<[String: Any]> { completion in
+            Alamofire.request(url)
+                .responseJSON { response in
+                    self.handle(response: response, completion: completion)
+            }
         }
     }
     
-    override func getImage(url: String, completion: @escaping (Result<UIImage>) -> Void) {
-        Alamofire.request(url)
-            .responseImage { response in
-                self.handleResponse(withCompletion: completion, response: response)
+    override func getImage(url: String) -> Future<UIImage> {
+        return Future<UIImage> { completion in
+            Alamofire.request(url)
+                .responseImage { response in
+                    self.handle(response: response, completion: completion)
+            }
         }
     }
 }
