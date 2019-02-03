@@ -10,16 +10,16 @@ import Microfutures
 
 protocol NetworkingProtocol {
     associatedtype ImageType
-    func getJson(url: String) -> Future<[String: Any]>
-    func getImage(url: String) -> Future<ImageType>
+    func getJson(from url: String) -> Future<[String: Any]>
+    func getImage(from url: String) -> Future<ImageType>
 }
 
 class NetworkingWith<ImageType>: NetworkingProtocol {
-    func getJson(url: String) -> Future<[String: Any]> {
+    func getJson(from url: String) -> Future<[String: Any]> {
         fatalError()
     }
     
-    func getImage(url: String) -> Future<ImageType> {
+    func getImage(from url: String) -> Future<ImageType> {
         fatalError()
     }
 }

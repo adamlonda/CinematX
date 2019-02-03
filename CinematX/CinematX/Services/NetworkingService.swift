@@ -32,7 +32,7 @@ class NetworkingService: NetworkingWith<UIImage> {
         completion(.success(data as! Out))
     }
     
-    override func getJson(url: String) -> Future<[String: Any]> {
+    override func getJson(from url: String) -> Future<[String: Any]> {
         return Future<[String: Any]> { completion in
             Alamofire.request(url)
                 .responseJSON { response in
@@ -41,7 +41,7 @@ class NetworkingService: NetworkingWith<UIImage> {
         }
     }
     
-    override func getImage(url: String) -> Future<UIImage> {
+    override func getImage(from url: String) -> Future<UIImage> {
         return Future<UIImage> { completion in
             Alamofire.request(url)
                 .responseImage { response in

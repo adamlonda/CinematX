@@ -14,7 +14,7 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     typealias ImageType = UIImage
     
     private let network: NetworkingWith<ImageType>
-    private let parser: Parser<JsonResponse>
+    private let dataFactory: DataFactory<JsonResponse>
     
     private let baseApiUrl: String = "https://api.themoviedb.org/3"
     private let apiKey: String = "40a81d1f384835eaee99ce0f3f6f1e7b"
@@ -22,38 +22,37 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     private let baseImgUrl: String = "https://image.tmdb.org/t/p/"
     private let imageDim: String = "w500"
     
-    required init(network: NetworkingWith<ImageType>, parser: Parser<JsonResponse>) {
+    required init(network: NetworkingWith<ImageType>, dataFactory: DataFactory<JsonResponse>) {
         self.network = network
-        self.parser = parser
+        self.dataFactory = dataFactory
     }
     
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
-    private func getMoviePoster(path: String) -> Future<ImageType> {
+    private func getMoviePoster(from path: String) -> Future<ImageType> {
         let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
-        return self.network.getImage(url: url)
+        return self.network.getImage(from: url)
     }
     
-    private func parsePopularMovies(from: JsonResponse, completion: (Result<[MovieItem]>) -> Void) {
-        do {
-            let movies = try self.parser.getPopularMovies(from: from)
-            completion(.success(movies))
-        } catch let error {
-            completion(.failure(error))
+    override func getMovie(from info: MovieInfo) -> Future<Movie<ImageType>> {
+        return self.getMoviePoster(from: info.posterPath)
+            .map({ image in
+                return Movie(info: info, poster: image)
+            })
+    }
+    
+    private func parseMovieInfo(from response: JsonResponse) throws -> [MovieInfo] {
+        if let results = response["results"] {
+            return try (results as! [JsonResponse]).map({ movieResult in
+                try dataFactory.getMovieInfo(from: movieResult)
+            })
         }
+        throw CommonError.parsingError
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
-    override func getPopularMovies(languageCode: String) -> Future<[MovieItem]> {
-        return Future<[MovieItem]> { completion in
-            let url = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-            self.network.getJson(url: url)
-            .subscribe(
-                onNext: { json in
-                    self.parsePopularMovies(from: json, completion: completion)
-            },
-                onError: { error in
-                    completion(.failure(error))
-            })
-        }
+    override func getPopularMoviesInfo(with languageCode: String) -> Future<[MovieInfo]> {
+        let url = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+        return self.network.getJson(from: url)
+            .map(self.parseMovieInfo)
     }
 }

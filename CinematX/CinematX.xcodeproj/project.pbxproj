@@ -10,10 +10,11 @@
 		268BD53DCAEB8231D6471495 /* Pods_CinematX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63B8C37750DFD9B79244BA0 /* Pods_CinematX.framework */; };
 		910E7AE121FD89EC0015CDB2 /* MovieDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE021FD89EC0015CDB2 /* MovieDatabaseProtocol.swift */; };
 		910E7AE321FD8B7F0015CDB2 /* TheMovieDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE221FD8B7F0015CDB2 /* TheMovieDatabaseService.swift */; };
-		910E7AE621FD8C890015CDB2 /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE521FD8C890015CDB2 /* MovieItem.swift */; };
-		910E7AEE2202EBAF0015CDB2 /* ParsingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AED2202EBAF0015CDB2 /* ParsingProtocol.swift */; };
-		910E7AF02202F08A0015CDB2 /* ParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AEF2202F08A0015CDB2 /* ParsingService.swift */; };
+		910E7AE621FD8C890015CDB2 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AE521FD8C890015CDB2 /* Movie.swift */; };
+		910E7AEE2202EBAF0015CDB2 /* DataFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AED2202EBAF0015CDB2 /* DataFactoryProtocol.swift */; };
+		910E7AF02202F08A0015CDB2 /* DataFactoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AEF2202F08A0015CDB2 /* DataFactoryService.swift */; };
 		910E7AF32203865E0015CDB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 910E7AF12203865E0015CDB2 /* Localizable.strings */; };
+		910E7AF622070C710015CDB2 /* CommonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910E7AF522070C710015CDB2 /* CommonError.swift */; };
 		916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */; };
 		916B0EA821FC67E2008F8671 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA721FC67E2008F8671 /* NetworkingService.swift */; };
 		916B0EAA21FC8BC1008F8671 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */; };
@@ -47,10 +48,11 @@
 		56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematX.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinematX/Pods-CinematX.release.xcconfig"; sourceTree = "<group>"; };
 		910E7AE021FD89EC0015CDB2 /* MovieDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDatabaseProtocol.swift; sourceTree = "<group>"; };
 		910E7AE221FD8B7F0015CDB2 /* TheMovieDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDatabaseService.swift; sourceTree = "<group>"; };
-		910E7AE521FD8C890015CDB2 /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
-		910E7AED2202EBAF0015CDB2 /* ParsingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingProtocol.swift; sourceTree = "<group>"; };
-		910E7AEF2202F08A0015CDB2 /* ParsingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingService.swift; sourceTree = "<group>"; };
+		910E7AE521FD8C890015CDB2 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		910E7AED2202EBAF0015CDB2 /* DataFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFactoryProtocol.swift; sourceTree = "<group>"; };
+		910E7AEF2202F08A0015CDB2 /* DataFactoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFactoryService.swift; sourceTree = "<group>"; };
 		910E7AF22203865E0015CDB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CinematX/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		910E7AF522070C710015CDB2 /* CommonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonError.swift; sourceTree = "<group>"; };
 		9122EE8C21FA41CC007FE01B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
 		916B0EA721FC67E2008F8671 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
@@ -110,9 +112,17 @@
 		910E7AE421FD8C0D0015CDB2 /* CinematXModel */ = {
 			isa = PBXGroup;
 			children = (
-				910E7AE521FD8C890015CDB2 /* MovieItem.swift */,
+				910E7AE521FD8C890015CDB2 /* Movie.swift */,
 			);
 			path = CinematXModel;
+			sourceTree = "<group>";
+		};
+		910E7AF422070C450015CDB2 /* CinematXCommon */ = {
+			isa = PBXGroup;
+			children = (
+				910E7AF522070C710015CDB2 /* CommonError.swift */,
+			);
+			path = CinematXCommon;
 			sourceTree = "<group>";
 		};
 		916B0EA121FC5C67008F8671 /* CinematXProtocols */ = {
@@ -120,7 +130,7 @@
 			children = (
 				916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */,
 				910E7AE021FD89EC0015CDB2 /* MovieDatabaseProtocol.swift */,
-				910E7AED2202EBAF0015CDB2 /* ParsingProtocol.swift */,
+				910E7AED2202EBAF0015CDB2 /* DataFactoryProtocol.swift */,
 			);
 			path = CinematXProtocols;
 			sourceTree = "<group>";
@@ -130,7 +140,7 @@
 			children = (
 				916B0EA721FC67E2008F8671 /* NetworkingService.swift */,
 				910E7AE221FD8B7F0015CDB2 /* TheMovieDatabaseService.swift */,
-				910E7AEF2202F08A0015CDB2 /* ParsingService.swift */,
+				910E7AEF2202F08A0015CDB2 /* DataFactoryService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -138,6 +148,7 @@
 		91A62FC321F8E78300718A87 = {
 			isa = PBXGroup;
 			children = (
+				910E7AF422070C450015CDB2 /* CinematXCommon */,
 				910E7AE421FD8C0D0015CDB2 /* CinematXModel */,
 				916B0EA121FC5C67008F8671 /* CinematXProtocols */,
 				91A62FCE21F8E78300718A87 /* CinematX */,
@@ -391,13 +402,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */,
-				910E7AE621FD8C890015CDB2 /* MovieItem.swift in Sources */,
+				910E7AE621FD8C890015CDB2 /* Movie.swift in Sources */,
+				910E7AF622070C710015CDB2 /* CommonError.swift in Sources */,
 				91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */,
-				910E7AEE2202EBAF0015CDB2 /* ParsingProtocol.swift in Sources */,
+				910E7AEE2202EBAF0015CDB2 /* DataFactoryProtocol.swift in Sources */,
 				910E7AE321FD8B7F0015CDB2 /* TheMovieDatabaseService.swift in Sources */,
 				91A62FD021F8E78300718A87 /* AppDelegate.swift in Sources */,
 				916B0EAA21FC8BC1008F8671 /* SwinjectStoryboard.swift in Sources */,
-				910E7AF02202F08A0015CDB2 /* ParsingService.swift in Sources */,
+				910E7AF02202F08A0015CDB2 /* DataFactoryService.swift in Sources */,
 				916B0EA821FC67E2008F8671 /* NetworkingService.swift in Sources */,
 				910E7AE121FD89EC0015CDB2 /* MovieDatabaseProtocol.swift in Sources */,
 			);

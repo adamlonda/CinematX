@@ -10,11 +10,16 @@ import Microfutures
 
 protocol MovieDatabaseProtocol {
     associatedtype ImageType
-    func getPopularMovies(languageCode: String) -> Future<[MovieItem]>
+    func getMovie(from info: MovieInfo) -> Future<Movie<ImageType>>
+    func getPopularMoviesInfo(with languageCode: String) -> Future<[MovieInfo]>
 }
 
 class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
-    func getPopularMovies(languageCode: String) -> Future<[MovieItem]> {
+    func getMovie(from info: MovieInfo) -> Future<Movie<ImageType>> {
+        fatalError()
+    }
+    
+    func getPopularMoviesInfo(with languageCode: String) -> Future<[MovieInfo]> {
         fatalError()
     }
 }
