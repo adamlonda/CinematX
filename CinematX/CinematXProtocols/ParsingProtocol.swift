@@ -8,13 +8,13 @@
 
 protocol ParsingProtocol {
     associatedtype UnparsedData
-    func getPopularMovies(from: UnparsedData) -> [MovieItem]
+    func getPopularMovies(from: UnparsedData) throws -> [MovieItem]
 }
 
 class Parser<T>: ParsingProtocol {
     typealias UnparsedData = T
     
-    func getPopularMovies(from: T) -> [MovieItem] {
+    func getPopularMovies(from: T) throws -> [MovieItem] {
         fatalError()
     }
 }

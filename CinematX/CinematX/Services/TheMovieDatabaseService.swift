@@ -33,6 +33,15 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
         return self.network.getImage(url: url)
     }
     
+    private func parsePopularMovies(from: JsonResponse, completion: (Result<[MovieItem]>) -> Void) {
+        do {
+            let movies = try self.parser.getPopularMovies(from: from)
+            completion(.success(movies))
+        } catch let error {
+            completion(.failure(error))
+        }
+    }
+    
     // https://developers.themoviedb.org/3/movies/get-popular-movies
     override func getPopularMovies(languageCode: String) -> Future<[MovieItem]> {
         return Future<[MovieItem]> { completion in
@@ -40,7 +49,7 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
             self.network.getJson(url: url)
             .subscribe(
                 onNext: { json in
-                    completion(.success(self.parser.getPopularMovies(from: json)))
+                    self.parsePopularMovies(from: json, completion: completion)
             },
                 onError: { error in
                     completion(.failure(error))
