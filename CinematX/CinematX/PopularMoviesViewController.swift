@@ -23,8 +23,16 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         super.init(coder: aDecoder)
     }
     
-    private func signal(error: Error) {
-        print(error)
+    private func alertConnectionError() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("connectionError", comment: "Connection error title"),
+            message: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"),
+            preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
+            self.getPopularMovies()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func getMovies(from info: [MovieInfo]) {
@@ -38,7 +46,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
                         }
                 },
                     onError: { e in
-                        self.signal(error: e)
+                        self.alertConnectionError()
                 })
         }
     }
@@ -52,7 +60,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
                     self.getMovies(from: info)
             },
                 onError: { e in
-                    self.signal(error: e)
+                    self.alertConnectionError()
             })
     }
 
