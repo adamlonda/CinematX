@@ -8,7 +8,9 @@
 
 import UIKit
 
-class PopularMoviesViewController: UIViewController {
+class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet var collectionView: UICollectionView!
+    
     typealias ImageType = UIImage
     
     var movieDb: MovieDatabaseWith<ImageType>?
@@ -31,6 +33,9 @@ class PopularMoviesViewController: UIViewController {
                 .subscribe(
                     onNext: { movie in
                         self.popularMovies.append(movie)
+                        if self.popularMovies.count == info.count {
+                            self.collectionView.reloadSections(IndexSet(integer: 0))
+                        }
                 },
                     onError: { e in
                         self.signal(error: e)
@@ -54,6 +59,19 @@ class PopularMoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getPopularMovies()
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return popularMovies.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularMovieCollectionViewCell", for: indexPath) as! PopularMovieCollectionCell
+        let movie = popularMovies[indexPath.row]
+        
+        cell.displayContent(posterImage: movie.poster, title: movie.title)
+        return cell
     }
 }
 
