@@ -33,20 +33,21 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
         return self.network.getImage(from: url)
     }
     
-    override func getMovie(from info: MovieInfo) -> Future<Movie<ImageType>> {
+    override func getMovie(from info: MovieInfo, with genreMap: [Int: String]) -> Future<Movie<ImageType>> {
         return self.getMoviePoster(from: info.posterPath)
             .map({ image in
-                return try self.dataFactory.getMovie(from: info, with: image)
+                return try self.dataFactory.getMovie(from: info, with: image, genreMap: genreMap)
             })
     }
     
     private func parseMovieInfo(from response: JsonResponse) throws -> [MovieInfo] {
-        if let results = response["results"] {
-            return try (results as! [JsonResponse]).map({ movieResult in
-                try dataFactory.getMovieInfo(from: movieResult)
-            })
+        guard let results = response["results"] else {
+            throw CommonError.parsingError
         }
-        throw CommonError.parsingError
+        
+        return try (results as! [JsonResponse]).map({ movieResult in
+            try dataFactory.getMovieInfo(from: movieResult)
+        })
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
@@ -54,5 +55,12 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
         let url = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
         return self.network.getJson(from: url)
             .map(self.parseMovieInfo)
+    }
+    
+    // https://developers.themoviedb.org/3/genres/get-movie-list
+    override func getGenreMap(with languageCode: String) -> Future<[Int: String]> {
+        let url = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
+        return self.network.getJson(from: url)
+            .map(dataFactory.getGenreMap)
     }
 }

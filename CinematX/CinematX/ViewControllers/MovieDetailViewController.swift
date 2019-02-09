@@ -13,6 +13,7 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var movieTitle: UILabel!
+    @IBOutlet var genre: UILabel!
     @IBOutlet var releaseDate: UILabel!
     @IBOutlet var movieOverview: UILabel!
     
@@ -34,6 +35,7 @@ class MovieDetailViewController: UIViewController {
         
         posterImage.image = movieForDetail!.poster
         movieTitle.text = movieForDetail!.title
+        genre.text = movieForDetail!.genres.joined(separator: ", ")
         movieOverview.text = movieForDetail!.overview
         releaseDate.text = dateFormatter.string(from: movieForDetail!.releaseDate)
     }
