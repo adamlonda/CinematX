@@ -19,6 +19,7 @@
 		916B0EA321FC5D87008F8671 /* NetworkingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */; };
 		916B0EA821FC67E2008F8671 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA721FC67E2008F8671 /* NetworkingService.swift */; };
 		916B0EAA21FC8BC1008F8671 /* SwinjectStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */; };
+		918C6EEE220EC0DC005E36E3 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918C6EED220EC0DC005E36E3 /* MovieDetailViewController.swift */; };
 		91A62FD021F8E78300718A87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FCF21F8E78300718A87 /* AppDelegate.swift */; };
 		91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */; };
 		91A62FD521F8E78300718A87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A62FD321F8E78300718A87 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		916B0EA221FC5D87008F8671 /* NetworkingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingProtocol.swift; sourceTree = "<group>"; };
 		916B0EA721FC67E2008F8671 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		916B0EA921FC8BC1008F8671 /* SwinjectStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectStoryboard.swift; sourceTree = "<group>"; };
+		918C6EED220EC0DC005E36E3 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		91A62FCC21F8E78300718A87 /* CinematX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinematX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A62FCF21F8E78300718A87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMoviesViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +149,16 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		918C6EEF220EC0F6005E36E3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */,
+				910E7AF72209DBE20015CDB2 /* PopularMovieCollectionViewCell.swift */,
+				918C6EED220EC0DC005E36E3 /* MovieDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		91A62FC321F8E78300718A87 = {
 			isa = PBXGroup;
 			children = (
@@ -175,10 +187,9 @@
 		91A62FCE21F8E78300718A87 /* CinematX */ = {
 			isa = PBXGroup;
 			children = (
+				918C6EEF220EC0F6005E36E3 /* ViewControllers */,
 				916B0EA621FC67BA008F8671 /* Services */,
 				91A62FCF21F8E78300718A87 /* AppDelegate.swift */,
-				91A62FD121F8E78300718A87 /* PopularMoviesViewController.swift */,
-				910E7AF72209DBE20015CDB2 /* PopularMovieCollectionViewCell.swift */,
 				91A62FD321F8E78300718A87 /* Main.storyboard */,
 				91A62FD621F8E78500718A87 /* Assets.xcassets */,
 				91A62FD821F8E78500718A87 /* LaunchScreen.storyboard */,
@@ -408,6 +419,7 @@
 				910E7AE621FD8C890015CDB2 /* Movie.swift in Sources */,
 				910E7AF622070C710015CDB2 /* CommonError.swift in Sources */,
 				91A62FD221F8E78300718A87 /* PopularMoviesViewController.swift in Sources */,
+				918C6EEE220EC0DC005E36E3 /* MovieDetailViewController.swift in Sources */,
 				910E7AEE2202EBAF0015CDB2 /* DataFactoryProtocol.swift in Sources */,
 				910E7AE321FD8B7F0015CDB2 /* TheMovieDatabaseService.swift in Sources */,
 				910E7AF82209DBE20015CDB2 /* PopularMovieCollectionViewCell.swift in Sources */,

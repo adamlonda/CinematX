@@ -9,9 +9,9 @@
 import UIKit
 
 class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    @IBOutlet var collectionView: UICollectionView!
-    
     typealias ImageType = UIImage
+    
+    @IBOutlet var collectionView: UICollectionView!
     
     var movieDb: MovieDatabaseWith<ImageType>?
     
@@ -32,6 +32,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
             self.getPopularMovies()
         }))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -41,9 +42,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
                 .subscribe(
                     onNext: { movie in
                         self.popularMovies.append(movie)
-                        if self.popularMovies.count == info.count {
-                            self.collectionView.reloadSections(IndexSet(integer: 0))
-                        }
+                        self.collectionView.reloadSections(IndexSet(integer: 0))
                 },
                     onError: { e in
                         self.alertConnectionError()
@@ -69,17 +68,23 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         getPopularMovies()
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return popularMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularMovieCollectionViewCell", for: indexPath) as! PopularMovieCollectionCell
-        let movie = popularMovies[indexPath.row]
         
-        cell.displayContent(posterImage: movie.poster, title: movie.title)
+        let movie = popularMovies[indexPath.row]
+        cell.displayContent(from: movie)
+        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        let destination = (segue.destination as! MovieDetailViewController)
+        destination.movieForDetail = (sender as! PopularMovieCollectionCell).movie
     }
 }
 

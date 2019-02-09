@@ -12,8 +12,11 @@ class PopularMovieCollectionCell: UICollectionViewCell {
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var title: UILabel!
     
-    func displayContent(posterImage: UIImage, title: String) {
-        self.posterImage.image = posterImage
-        self.title.text = title
+    var movie: Movie<UIImage>!
+    
+    func displayContent(from movie: Movie<UIImage>) {
+        self.posterImage.image = movie.poster
+        self.title.text = movie.title
+        self.movie = movie
     }
 }
