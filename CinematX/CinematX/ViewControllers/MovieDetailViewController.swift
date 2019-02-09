@@ -13,12 +13,28 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var movieTitle: UILabel!
+    @IBOutlet var releaseDate: UILabel!
     @IBOutlet var movieOverview: UILabel!
+    
+    private let dateFormatter: DateFormatter
+    
+    required init?(coder aDecoder: NSCoder) {
+        dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        dateFormatter.timeStyle = .none
+        
+        let localeId = NSLocalizedString("dateLocaleId", comment: "Date locale ID")
+        dateFormatter.locale = Locale(identifier: localeId)
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         posterImage.image = movieForDetail!.poster
         movieTitle.text = movieForDetail!.title
         movieOverview.text = movieForDetail!.overview
+        releaseDate.text = dateFormatter.string(from: movieForDetail!.releaseDate)
     }
 }

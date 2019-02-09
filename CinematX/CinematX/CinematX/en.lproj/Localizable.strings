@@ -7,6 +7,7 @@
 */
 
 "apiLanguageCode" = "en-US";
+"dateLocaleId" = "en-US";
 "connectionError" = "Connection error";
 "connectionErrorMessage" = "An error occured while getting data from TMDb.";
 "tryAgain" = "Try again";

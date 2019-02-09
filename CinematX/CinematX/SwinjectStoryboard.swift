@@ -19,14 +19,14 @@ extension SwinjectStoryboard {
             _ in NetworkingService()
         }
         
-        swinject.register(DataFactory<JsonResponse>.self) {
+        swinject.register(DataFactory<JsonResponse, ImageType>.self) {
             _ in DataFactoryService()
         }
         
         swinject.register(MovieDatabaseWith<ImageType>.self) {
             r in TheMovieDatabaseService(
                 network: r.resolve(NetworkingWith<ImageType>.self)!,
-                dataFactory: r.resolve(DataFactory<JsonResponse>.self)!)
+                dataFactory: r.resolve(DataFactory<JsonResponse, ImageType>.self)!)
         }
         
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in

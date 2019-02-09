@@ -8,13 +8,20 @@
 
 protocol DataFactoryProtocol {
     associatedtype UnparsedData
+    associatedtype ImageType
     func getMovieInfo(from response: UnparsedData) throws -> MovieInfo
+    func getMovie(from info: MovieInfo, with poster: ImageType) throws -> Movie<ImageType>
 }
 
-class DataFactory<From>: DataFactoryProtocol {
-    typealias UnparsedData = From
+class DataFactory<FromType, WithImage>: DataFactoryProtocol {
+    typealias UnparsedData = FromType
+    typealias ImageType = WithImage
     
     func getMovieInfo(from response: UnparsedData) throws -> MovieInfo {
+        fatalError()
+    }
+    
+    func getMovie(from info: MovieInfo, with poster: ImageType) throws -> Movie<ImageType> {
         fatalError()
     }
 }
