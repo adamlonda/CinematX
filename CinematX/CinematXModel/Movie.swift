@@ -13,12 +13,14 @@ struct MovieInfo {
     let overview: String
     let posterPath: String
     let releaseDate: String
+    let genreIds: [Int]
     
-    init(title: String, overview: String, posterPath: String, releaseDate: String) {
+    init(title: String, overview: String, posterPath: String, releaseDate: String, genreIds: [Int]) {
         self.title = title
         self.overview = overview
         self.posterPath = posterPath
         self.releaseDate = releaseDate
+        self.genreIds = genreIds
     }
 }
 
@@ -27,11 +29,13 @@ struct Movie<ImageType> {
     let overview: String
     let poster: ImageType
     let releaseDate: Date
+    let genres: [String]
     
-    init(info: MovieInfo, poster: ImageType, releaseDate: Date) {
-        self.title = info.title
-        self.overview = info.overview
+    init(title: String, overview: String, poster: ImageType, releaseDate: Date, genres: [String]) {
+        self.title = title
+        self.overview = overview
         self.poster = poster
         self.releaseDate = releaseDate
+        self.genres = genres
     }
 }

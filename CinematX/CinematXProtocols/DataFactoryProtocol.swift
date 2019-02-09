@@ -9,8 +9,10 @@
 protocol DataFactoryProtocol {
     associatedtype UnparsedData
     associatedtype ImageType
+    
     func getMovieInfo(from response: UnparsedData) throws -> MovieInfo
-    func getMovie(from info: MovieInfo, with poster: ImageType) throws -> Movie<ImageType>
+    func getMovie(from info: MovieInfo, with poster: ImageType, genreMap: [Int: String]) throws -> Movie<ImageType>
+    func getGenreMap(from response: UnparsedData) throws -> [Int: String]
 }
 
 class DataFactory<FromType, WithImage>: DataFactoryProtocol {
@@ -21,7 +23,11 @@ class DataFactory<FromType, WithImage>: DataFactoryProtocol {
         fatalError()
     }
     
-    func getMovie(from info: MovieInfo, with poster: ImageType) throws -> Movie<ImageType> {
+    func getMovie(from info: MovieInfo, with poster: ImageType, genreMap: [Int: String]) throws -> Movie<ImageType> {
+        fatalError()
+    }
+    
+    func getGenreMap(from response: UnparsedData) throws -> [Int: String] {
         fatalError()
     }
 }

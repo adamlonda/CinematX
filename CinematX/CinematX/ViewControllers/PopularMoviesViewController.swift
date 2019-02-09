@@ -14,8 +14,8 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet var collectionView: UICollectionView!
     
     var movieDb: MovieDatabaseWith<ImageType>?
-    
     private var popularMovies: [Movie<ImageType>]
+    
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,31 +36,32 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func getMovies(from info: [MovieInfo]) {
+    private func loadMovies(from info: [MovieInfo], with genreMap: [Int: String]) {
         for i in info {
-            self.movieDb!.getMovie(from: i)
+            self.movieDb!.getMovie(from: i, with: genreMap)
                 .subscribe(
                     onNext: { movie in
                         self.popularMovies.append(movie)
                         self.collectionView.reloadSections(IndexSet(integer: 0))
                 },
-                    onError: { e in
-                        self.alertConnectionError()
-                })
+                    onError: { _ in self.alertConnectionError() })
         }
+    }
+    
+    private func getMovieInfo(with genreMap: [Int: String]) {
+        movieDb!.getPopularMoviesInfo(with: languageCode)
+            .subscribe(
+                onNext: { info in self.loadMovies(from: info, with: genreMap) },
+                onError: { _ in self.alertConnectionError() })
     }
     
     private func getPopularMovies() {
         popularMovies.removeAll()
-        
-        movieDb!.getPopularMoviesInfo(with: languageCode)
-            .subscribe(
-                onNext: { info in
-                    self.getMovies(from: info)
-            },
-                onError: { e in
-                    self.alertConnectionError()
-            })
+        movieDb!.getGenreMap(with: languageCode)
+        .subscribe(
+            onNext: { genreMap in self.getMovieInfo(with: genreMap) },
+            onError: { _ in self.alertConnectionError() }
+        )
     }
 
     override func viewDidLoad() {
