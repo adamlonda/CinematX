@@ -8,4 +8,6 @@ target 'CinematX' do
     pod 'Alamofire'
     pod 'AlamofireImage'
     pod 'Microfutures'
+    pod "RxSwift"
+    pod "RxCocoa"
 end
