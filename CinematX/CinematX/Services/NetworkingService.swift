@@ -24,12 +24,12 @@ class NetworkingService: NetworkingWith<UIImage> {
 //            completion(.failure(response.result.error!))
 //            return
 //        }
-//        
+//
 //        guard let data = response.result.value else {
 //            completion(.failure(NetworkingServiceError.emptyResponse))
 //            return
 //        }
-//        
+//
 //        completion(.success(data as! Out))
 //    }
     
@@ -52,7 +52,27 @@ class NetworkingService: NetworkingWith<UIImage> {
 //    }
     
     override func getJson(from url: String) -> Observable<[String: Any]> {
-        fatalError()
+        return Observable<[String: Any]>.create { (observer) -> Disposable in
+            let request = Alamofire.request(url)
+                .responseJSON { response in
+                    guard response.result.error == nil else {
+                        observer.onError(response.result.error!)
+                        return
+                    }
+            
+                    guard let data = response.result.value else {
+                        observer.onError(NetworkingServiceError.emptyResponse)
+                        return
+                    }
+            
+                    observer.onNext(data as! [String: Any])
+                    observer.onCompleted()
+            }
+            
+            return Disposables.create(with: {
+                request.cancel()
+            })
+        }
     }
     
     override func getImage(from url: String) -> Observable<UIImage> {
