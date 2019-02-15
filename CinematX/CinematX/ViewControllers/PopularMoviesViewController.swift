@@ -30,43 +30,45 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
             preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
-            self.getPopularMovies()
+//            self.getPopularMovies()
+            fatalError()
         }))
         
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func loadMovies(from info: [MovieInfo], with genreMap: [Int: String]) {
-        for i in info {
-            self.movieDb!.getMovie(from: i, with: genreMap)
-                .subscribe(
-                    onNext: { movie in
-                        self.popularMovies.append(movie)
-                        self.collectionView.reloadSections(IndexSet(integer: 0))
-                },
-                    onError: { _ in self.alertConnectionError() })
-        }
-    }
+//    private func loadMovies(from info: [MovieInfo], with genreMap: [Int: String]) {
+//        for i in info {
+//            self.movieDb!.getMovie(from: i, with: genreMap)
+//                .subscribe(
+//                    onNext: { movie in
+//                        self.popularMovies.append(movie)
+//                        self.collectionView.reloadSections(IndexSet(integer: 0))
+//                },
+//                    onError: { _ in self.alertConnectionError() })
+//        }
+//    }
     
-    private func getMovieInfo(with genreMap: [Int: String]) {
-        movieDb!.getPopularMoviesInfo(with: languageCode)
-            .subscribe(
-                onNext: { info in self.loadMovies(from: info, with: genreMap) },
-                onError: { _ in self.alertConnectionError() })
-    }
+//    private func getMovieInfo(with genreMap: [Int: String]) {
+//        movieDb!.getPopularMoviesInfo(with: languageCode)
+//            .subscribe(
+//                onNext: { info in self.loadMovies(from: info, with: genreMap) },
+//                onError: { _ in self.alertConnectionError() })
+//    }
     
-    private func getPopularMovies() {
-        popularMovies.removeAll()
-        movieDb!.getGenreMap(with: languageCode)
-        .subscribe(
-            onNext: { genreMap in self.getMovieInfo(with: genreMap) },
-            onError: { _ in self.alertConnectionError() }
-        )
-    }
+//    private func getPopularMovies() {
+//        popularMovies.removeAll()
+//        movieDb!.getGenreMap(with: languageCode)
+//        .subscribe(
+//            onNext: { genreMap in self.getMovieInfo(with: genreMap) },
+//            onError: { _ in self.alertConnectionError() }
+//        )
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getPopularMovies()
+//        getPopularMovies()
+        fatalError()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
