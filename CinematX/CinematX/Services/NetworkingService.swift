@@ -51,22 +51,26 @@ class NetworkingService: NetworkingWith<UIImage> {
 //        }
 //    }
     
+    private func handle<In, Out>(response: DataResponse<In>, observer: AnyObserver<Out>) {
+        guard response.result.error == nil else {
+            observer.onError(response.result.error!)
+            return
+        }
+
+        guard let data = response.result.value else {
+            observer.onError(NetworkingServiceError.emptyResponse)
+            return
+        }
+
+        observer.onNext(data as! Out)
+        observer.onCompleted()
+    }
+    
     override func getJson(from url: String) -> Observable<[String: Any]> {
         return Observable<[String: Any]>.create { (observer) -> Disposable in
             let request = Alamofire.request(url)
                 .responseJSON { response in
-                    guard response.result.error == nil else {
-                        observer.onError(response.result.error!)
-                        return
-                    }
-            
-                    guard let data = response.result.value else {
-                        observer.onError(NetworkingServiceError.emptyResponse)
-                        return
-                    }
-            
-                    observer.onNext(data as! [String: Any])
-                    observer.onCompleted()
+                    self.handle(response: response, observer: observer)
             }
             
             return Disposables.create(with: {
@@ -76,6 +80,15 @@ class NetworkingService: NetworkingWith<UIImage> {
     }
     
     override func getImage(from url: String) -> Observable<UIImage> {
-        fatalError()
+        return Observable<UIImage>.create { (observer) -> Disposable in
+            let request = Alamofire.request(url)
+                .responseImage { response in
+                    self.handle(response: response, observer: observer)
+            }
+            
+            return Disposables.create(with: {
+                request.cancel()
+            })
+        }
     }
 }
