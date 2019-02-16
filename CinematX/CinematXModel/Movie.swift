@@ -1,5 +1,5 @@
 //
-//  MovieItem.swift
+//  Movie.swift
 //  CinematX
 //
 //  Created by Adam Londa on 27/01/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieInfo {
+struct MovieData {
     let title: String
     let overview: String
     let posterPath: String

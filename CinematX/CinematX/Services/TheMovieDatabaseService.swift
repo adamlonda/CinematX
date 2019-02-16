@@ -54,15 +54,25 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //            })
 //    }
 //
-//    private func parseMovieInfo(from response: JsonResponse) throws -> [MovieInfo] {
+//    private func parseMovieInfo(from response: JsonResponse) throws -> [MovieData] {
 //        guard let results = response["results"] else {
 //            throw CommonError.parsingError
 //        }
 //
 //        return try (results as! [JsonResponse]).map({ movieResult in
-//            try dataFactory.getMovieInfo(from: movieResult)
+//            try dataFactory.getMovieData(from: movieResult)
 //        })
 //    }
+    
+    private func getMovieData(from response: JsonResponse) -> Observable<MovieData> {
+        guard let results = response["results"] else {
+            throw CommonError.parsingError
+        }
+        
+        return try (results as! [JsonResponse]).map({ movieResult in
+            try dataFactory.getMovieData(from: movieResult)
+        })
+    }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
 //    override func getPopularMoviesInfo(with languageCode: String) -> Future<[MovieInfo]> {
@@ -93,6 +103,14 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //    }
     
     override func getPopularMovies(with languageCode: String) -> Observable<[Movie<ImageType>]> {
+        let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+        let moviesData = network.getJson(from: popularMoviesUrl)
+            .map({ json in try self.getMovieData(from: json) })
+        
+        let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
+        let genreMap = network.getJson(from: genreMapUrl)
+            .map({ json in try self.dataFactory.getGenreMap(from: json) })
+        
         fatalError()
     }
 }
