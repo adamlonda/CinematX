@@ -65,13 +65,22 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //    }
     
     private func getMovieData(from response: JsonResponse) -> Observable<MovieData> {
-        guard let results = response["results"] else {
-            throw CommonError.parsingError
+        return Observable<MovieData>.create { (observer) -> Disposable in
+            do {
+                guard let results = response["results"] else {
+                    throw CommonError.parsingError
+                }
+                
+                for result in results as! [JsonResponse] {
+                    observer.onNext(try self.dataFactory.getMovieData(from: result))
+                }
+            } catch {
+                observer.onError(error)
+            }
+            
+            observer.onCompleted()
+            return Disposables.create()
         }
-        
-        return try (results as! [JsonResponse]).map({ movieResult in
-            try dataFactory.getMovieData(from: movieResult)
-        })
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
@@ -102,14 +111,17 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //            .map(dataFactory.getGenreMap)
 //    }
     
-    override func getPopularMovies(with languageCode: String) -> Observable<[Movie<ImageType>]> {
+    override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
         let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-        let moviesData = network.getJson(from: popularMoviesUrl)
-            .map({ json in try self.getMovieData(from: json) })
+        let moviesResponseStream = network.getJson(from: popularMoviesUrl)
         
         let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
-        let genreMap = network.getJson(from: genreMapUrl)
+        let genreMapStream = network.getJson(from: genreMapUrl)
             .map({ json in try self.dataFactory.getGenreMap(from: json) })
+        
+        Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
+            fatalError()
+        })
         
         fatalError()
     }

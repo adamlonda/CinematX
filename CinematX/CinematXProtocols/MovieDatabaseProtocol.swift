@@ -17,7 +17,7 @@ protocol MovieDatabaseProtocol {
 //    func getMovie(from info: MovieInfo, with genreMap: [Int: String]) -> Observable<Movie<ImageType>>
 //    func getPopularMoviesInfo(with languageCode: String) -> Observable<[MovieInfo]>
 //    func getGenreMap(with languageCode: String) -> Observable<[Int: String]>
-    func getPopularMovies(with languageCode: String) -> Observable<[Movie<ImageType>]>
+    func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>>
 }
 
 class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
@@ -45,7 +45,7 @@ class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
 //        fatalError()
 //    }
     
-    func getPopularMovies(with languageCode: String) -> Observable<[Movie<ImageType>]> {
+    func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
         fatalError()
     }
 }
