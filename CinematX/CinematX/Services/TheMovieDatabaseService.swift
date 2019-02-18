@@ -35,10 +35,10 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //    }
     
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
-//    private func getMoviePoster(from path: String) -> Observable<ImageType> {
-//        let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
-//        return self.network.getImage(from: url)
-//    }
+    private func getMoviePoster(from path: String) -> Observable<ImageType> {
+        let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
+        return self.network.getImage(from: url)
+    }
     
 //    override func getMovie(from info: MovieInfo, with genreMap: [Int: String]) -> Future<Movie<ImageType>> {
 //        return self.getMoviePoster(from: info.posterPath)
@@ -112,17 +112,28 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //    }
     
     override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
-        let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-        let moviesResponseStream = network.getJson(from: popularMoviesUrl)
-        
-        let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
-        let genreMapStream = network.getJson(from: genreMapUrl)
-            .map({ json in try self.dataFactory.getGenreMap(from: json) })
-        
-        Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
-            fatalError()
-        })
-        
-        fatalError()
+        return Observable<Movie<ImageType>>.create { (observer) -> Disposable in
+            let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+            let moviesResponseStream = self.network.getJson(from: popularMoviesUrl)
+            
+            let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
+            let genreMapStream = self.network.getJson(from: genreMapUrl)
+                .map({ json in try self.dataFactory.getGenreMap(from: json) })
+            
+            Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
+                self.getMovieData(from: movieResponse).subscribe(onNext: { movieData in
+                    self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
+                        do {
+                            let movie = try self.dataFactory.getMovie(from: movieData, with: moviePoster, genreMap: genreMap)
+                            observer.onNext(movie)
+                        } catch {
+                            observer.onError(error)
+                        }
+                    })
+                })
+            })
+            
+            return Disposables.create()
+        }
     }
 }
