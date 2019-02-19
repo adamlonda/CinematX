@@ -113,6 +113,8 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     
     override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
         return Observable<Movie<ImageType>>.create { (observer) -> Disposable in
+            let disposeBag = DisposeBag()
+            
             let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
             let moviesResponseStream = self.network.getJson(from: popularMoviesUrl)
             
@@ -120,17 +122,20 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
             let genreMapStream = self.network.getJson(from: genreMapUrl)
                 .map({ json in try self.dataFactory.getGenreMap(from: json) })
             
-            Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
-                self.getMovieData(from: movieResponse).subscribe(onNext: { movieData in
-                    self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
-                        do {
-                            let movie = try self.dataFactory.getMovie(from: movieData, with: moviePoster, genreMap: genreMap)
-                            observer.onNext(movie)
-                        } catch {
-                            observer.onError(error)
-                        }
-                    })
-                })
+             let streamZip = Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
+                self.getMovieData(from: movieResponse).subscribe(
+                    onNext: { movieData in
+                        self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
+                            do {
+                                let movie = try self.dataFactory.getMovie(from: movieData, with: moviePoster, genreMap: genreMap)
+                                observer.onNext(movie)
+                            } catch {
+                                observer.onError(error)
+                            }
+                        }).disposed(by: disposeBag)
+                },
+                    onError: { error in observer.onError(error) },
+                    onCompleted: { observer.onCompleted() })
             })
             
             return Disposables.create()
