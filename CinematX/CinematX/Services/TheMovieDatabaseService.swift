@@ -144,10 +144,6 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
                         })
                         posterStream.disposed(by: disposeBag)
                 },
-                    onError: { error in
-                        observer.onError(error)
-                        
-                },
                     onCompleted: {
                         observer.onCompleted()
                 })
