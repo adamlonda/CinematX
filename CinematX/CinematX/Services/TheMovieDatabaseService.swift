@@ -111,33 +111,51 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
 //            .map(dataFactory.getGenreMap)
 //    }
     
+    private func getRawResponseAndGenreMap(with languageCode: String) -> Observable<([String: Any], [Int: String])> {
+        let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+        let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
+        
+        let rawResponseStream = self.network.getJson(from: popularMoviesUrl)
+        let genreMapStream = self.network.getJson(from: genreMapUrl)
+            .map({ json in try self.dataFactory.getGenreMap(from: json) })
+        
+        return Observable.zip(rawResponseStream, genreMapStream, resultSelector: { rawResponse, genreMap in
+            return (rawResponse, genreMap)
+        })
+    }
+    
     override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
         return Observable<Movie<ImageType>>.create { (observer) -> Disposable in
             let disposeBag = DisposeBag()
             
-            let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-            let moviesResponseStream = self.network.getJson(from: popularMoviesUrl)
-            
-            let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
-            let genreMapStream = self.network.getJson(from: genreMapUrl)
-                .map({ json in try self.dataFactory.getGenreMap(from: json) })
-            
-             let streamZip = Observable.zip(moviesResponseStream, genreMapStream, resultSelector: { movieResponse, genreMap in
-                self.getMovieData(from: movieResponse).subscribe(
+            let basicResponseStream = self.getRawResponseAndGenreMap(with: languageCode).subscribe(onNext: { resultPackage in
+                let rawResponse = resultPackage.0
+                let genreMap = resultPackage.1
+                
+                let movieDataStream = self.getMovieData(from: rawResponse).subscribe(
                     onNext: { movieData in
-                        self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
+                        let posterStream = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
                             do {
                                 let movie = try self.dataFactory.getMovie(from: movieData, with: moviePoster, genreMap: genreMap)
                                 observer.onNext(movie)
                             } catch {
                                 observer.onError(error)
                             }
-                        }).disposed(by: disposeBag)
+                        })
+                        posterStream.disposed(by: disposeBag)
                 },
-                    onError: { error in observer.onError(error) },
-                    onCompleted: { observer.onCompleted() })
+                    onError: { error in
+                        observer.onError(error)
+                        
+                },
+                    onCompleted: {
+                        observer.onCompleted()
+                })
+
+                movieDataStream.disposed(by: disposeBag)
             })
-            
+                
+            basicResponseStream.disposed(by: disposeBag)
             return Disposables.create()
         }
     }
