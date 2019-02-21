@@ -6,6 +6,7 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import RxSwift
 import UIKit
 
 class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -30,8 +31,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
             preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
-//            self.getPopularMovies()
-            fatalError()
+            self.getPopularMovies()
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -56,19 +56,24 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 //                onError: { _ in self.alertConnectionError() })
 //    }
     
-//    private func getPopularMovies() {
-//        popularMovies.removeAll()
-//        movieDb!.getGenreMap(with: languageCode)
-//        .subscribe(
-//            onNext: { genreMap in self.getMovieInfo(with: genreMap) },
-//            onError: { _ in self.alertConnectionError() }
-//        )
-//    }
+    private func getPopularMovies() {
+        popularMovies.removeAll()
+        
+//        let disposeBag = DisposeBag()
+        let popularMoviesStream = movieDb!.getPopularMovies(with: languageCode).subscribe(
+            onNext: { movie in
+                self.popularMovies.append(movie)
+                
+        },
+            onError: { error in
+                self.alertConnectionError()
+        })
+//        popularMoviesStream.disposed(by: disposeBag)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        getPopularMovies()
-        fatalError()
+        getPopularMovies()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

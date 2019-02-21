@@ -117,7 +117,9 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
         
         let rawResponseStream = self.network.getJson(from: popularMoviesUrl)
         let genreMapStream = self.network.getJson(from: genreMapUrl)
-            .map({ json in try self.dataFactory.getGenreMap(from: json) })
+            .map({ json in
+                try self.dataFactory.getGenreMap(from: json)
+            })
         
         return Observable.zip(rawResponseStream, genreMapStream, resultSelector: { rawResponse, genreMap in
             return (rawResponse, genreMap)
@@ -126,7 +128,7 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     
     override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
         return Observable<Movie<ImageType>>.create { (observer) -> Disposable in
-            let disposeBag = DisposeBag()
+//            let disposeBag = DisposeBag()
             
             let basicResponseStream = self.getRawResponseAndGenreMap(with: languageCode).subscribe(onNext: { resultPackage in
                 let rawResponse = resultPackage.0
@@ -142,16 +144,16 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
                                 observer.onError(error)
                             }
                         })
-                        posterStream.disposed(by: disposeBag)
+//                        posterStream.disposed(by: disposeBag)
                 },
                     onCompleted: {
                         observer.onCompleted()
                 })
 
-                movieDataStream.disposed(by: disposeBag)
+//                movieDataStream.disposed(by: disposeBag)
             })
                 
-            basicResponseStream.disposed(by: disposeBag)
+//            basicResponseStream.disposed(by: disposeBag)
             return Disposables.create()
         }
     }
