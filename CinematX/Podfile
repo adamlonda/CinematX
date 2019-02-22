@@ -7,7 +7,6 @@ target 'CinematX' do
     pod 'SwinjectStoryboard'
     pod 'Alamofire'
     pod 'AlamofireImage'
-    pod 'Microfutures'
     pod "RxSwift"
     pod "RxCocoa"
 end

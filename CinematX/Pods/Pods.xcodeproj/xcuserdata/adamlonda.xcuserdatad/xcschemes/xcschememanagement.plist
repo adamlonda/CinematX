@@ -18,14 +18,14 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Microfutures.xcscheme</key>
+		<key>Pods-CinematX.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Pods-CinematX.xcscheme</key>
+		<key>RxAtomic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

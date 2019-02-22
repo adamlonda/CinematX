@@ -1,19 +1,19 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireImage (3.3.1):
-    - Alamofire (~> 4.5)
-  - Microfutures (0.1.2)
-  - RxCocoa (4.2.0):
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
+  - RxAtomic (4.4.1)
+  - RxCocoa (4.4.1):
     - RxSwift (~> 4.0)
-  - RxSwift (4.2.0)
-  - Swinject (2.4.1)
-  - SwinjectStoryboard (2.0.2):
-    - Swinject (~> 2.4)
+  - RxSwift (4.4.1):
+    - RxAtomic (~> 4.4)
+  - Swinject (2.5.0)
+  - SwinjectStoryboard (2.1.0):
+    - Swinject (~> 2.5)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
-  - Microfutures
   - RxCocoa
   - RxSwift
   - Swinject
@@ -23,21 +23,21 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
-    - Microfutures
+    - RxAtomic
     - RxCocoa
     - RxSwift
     - Swinject
     - SwinjectStoryboard
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  Microfutures: a7256087d89f835e8b2fdb72f7d6864ad3dd3fd9
-  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
-  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  Swinject: f7f15a9672e99328c1f07f277091087917215700
-  SwinjectStoryboard: 365698aec11b57c6b14a3c1f52d0308759d377bf
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  Swinject: 82cdb851f63f91bba974e3eca1d69780f2f7677e
+  SwinjectStoryboard: 688f096033103e66ffcf6ca678211acd7d7be505
 
-PODFILE CHECKSUM: 427f751df31a5b4f96230f06332fc7e7516a8821
+PODFILE CHECKSUM: edf75f0831b03a5ce919a794026169b51d9d724a
 
 COCOAPODS: 1.5.3
