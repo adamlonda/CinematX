@@ -6,7 +6,6 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
-import RxSwift
 import UIKit
 
 class DataFactoryService: DataFactory<[String: Any], UIImage> {

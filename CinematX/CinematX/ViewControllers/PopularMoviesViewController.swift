@@ -37,38 +37,17 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         self.present(alert, animated: true, completion: nil)
     }
     
-//    private func loadMovies(from info: [MovieInfo], with genreMap: [Int: String]) {
-//        for i in info {
-//            self.movieDb!.getMovie(from: i, with: genreMap)
-//                .subscribe(
-//                    onNext: { movie in
-//                        self.popularMovies.append(movie)
-//                        self.collectionView.reloadSections(IndexSet(integer: 0))
-//                },
-//                    onError: { _ in self.alertConnectionError() })
-//        }
-//    }
-    
-//    private func getMovieInfo(with genreMap: [Int: String]) {
-//        movieDb!.getPopularMoviesInfo(with: languageCode)
-//            .subscribe(
-//                onNext: { info in self.loadMovies(from: info, with: genreMap) },
-//                onError: { _ in self.alertConnectionError() })
-//    }
-    
     private func getPopularMovies() {
         popularMovies.removeAll()
         
-//        let disposeBag = DisposeBag()
-        let popularMoviesStream = movieDb!.getPopularMovies(with: languageCode).subscribe(
+        _ = movieDb!.getPopularMovies(with: languageCode).subscribe(
             onNext: { movie in
                 self.popularMovies.append(movie)
-                
+                self.collectionView.reloadSections(IndexSet(integer: 0))
         },
             onError: { error in
                 self.alertConnectionError()
         })
-//        popularMoviesStream.disposed(by: disposeBag)
     }
 
     override func viewDidLoad() {
