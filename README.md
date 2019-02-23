@@ -20,7 +20,11 @@ This app is a job interview project, written in my leisure time. It also happens
   * Overview
 * TMDb communication errors handled on UI
 
-## Features not included
+## February 23rd, 2019
+
+* RxSwift refactorization of the popular movies view controller & its services in use, no longer using the Futures pod for async code handling
+
+## Features not yet included
 
 * Popular movies filtering
 * Trailers playback
