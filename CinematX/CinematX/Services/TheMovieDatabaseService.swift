@@ -85,6 +85,9 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
                                 observer.onError(error)
                             }
                         })
+                },
+                    onError: { error in
+                        observer.onError(error)
                 })
             })
             
