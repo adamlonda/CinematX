@@ -33,6 +33,8 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FIXME: Remove force unwrap
+        
         posterImage.image = movieForDetail!.poster
         movieTitle.text = movieForDetail!.title
         genre.text = movieForDetail!.genres.joined(separator: ", ")

@@ -37,10 +37,19 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         self.present(alert, animated: true, completion: nil)
     }
     
+    private func handleInjectionError() {
+        let alert = UIAlertController(
+            title: "Dependency injection error",
+            message: "This error should not happen, if Swinject registrations are set up properly. If you see this message, please fix dependency injections.",
+            preferredStyle: .alert)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     private func getPopularMovies() {
         popularMovies.removeAll()
         
-        _ = movieDb!.getPopularMovies(with: languageCode).subscribe(
+        _ = movieDb?.getPopularMovies(with: languageCode).subscribe(
             onNext: { movie in
                 self.popularMovies.append(movie)
                 self.collectionView.reloadSections(IndexSet(integer: 0))
@@ -52,6 +61,12 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard  movieDb != nil else {
+            handleInjectionError()
+            return
+        }
+        
         getPopularMovies()
     }
     
