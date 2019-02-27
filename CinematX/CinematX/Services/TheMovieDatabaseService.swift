@@ -33,15 +33,15 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
         return self.network.getImage(from: url)
     }
     
-    private func getMovieData(from response: JsonResponse) -> Observable<MovieData> {
-        return Observable<MovieData>.create { (observer) -> Disposable in
+    private func getMovieData(from response: JsonResponse) -> Observable<MovieDataModel> {
+        return Observable<MovieDataModel>.create { (observer) -> Disposable in
             do {
                 guard let results = response["results"] else {
                     throw CommonError.parsingError
                 }
                 
                 for result in results as! [JsonResponse] {
-                    observer.onNext(try self.dataFactory.getMovieData(from: result))
+                    observer.onNext(try self.dataFactory.getMovieDataModel(from: result))
                 }
             } catch {
                 observer.onError(error)
@@ -69,8 +69,8 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
-    override func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
-        return Observable<Movie<ImageType>>.create { (observer) -> Disposable in
+    override func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel<ImageType>> {
+        return Observable<MovieViewModel<ImageType>>.create { (observer) -> Disposable in
             _ = self.getRawResponseAndGenreMap(with: languageCode).subscribe(onNext: { resultPackage in
                 let rawResponse = resultPackage.0
                 let genreMap = resultPackage.1
@@ -79,7 +79,7 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
                     onNext: { movieData in
                         _ = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
                             do {
-                                let movie = try self.dataFactory.getMovie(from: movieData, with: moviePoster, genreMap: genreMap)
+                                let movie = try self.dataFactory.getMovieViewModel(from: movieData, with: moviePoster, genreMap: genreMap)
                                 observer.onNext(movie)
                             } catch {
                                 observer.onError(error)

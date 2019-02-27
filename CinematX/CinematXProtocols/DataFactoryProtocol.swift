@@ -10,8 +10,8 @@ protocol DataFactoryProtocol {
     associatedtype UnparsedData
     associatedtype ImageType
     
-    func getMovieData(from response: UnparsedData) throws -> MovieData
-    func getMovie(from info: MovieData, with poster: ImageType, genreMap: [Int: String]) throws -> Movie<ImageType>
+    func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel
+    func getMovieViewModel(from dataModel: MovieDataModel, with poster: ImageType, genreMap: [Int: String]) throws -> MovieViewModel<ImageType>
     func getGenreMap(from response: UnparsedData) throws -> [Int: String]
 }
 
@@ -19,11 +19,11 @@ class DataFactory<FromType, WithImage>: DataFactoryProtocol {
     typealias UnparsedData = FromType
     typealias ImageType = WithImage
     
-    func getMovieData(from response: UnparsedData) throws -> MovieData {
+    func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel {
         fatalError()
     }
     
-    func getMovie(from info: MovieData, with poster: ImageType, genreMap: [Int: String]) throws -> Movie<ImageType> {
+    func getMovieViewModel(from dataModel: MovieDataModel, with poster: ImageType, genreMap: [Int: String]) throws -> MovieViewModel<ImageType> {
         fatalError()
     }
     

@@ -10,11 +10,11 @@ import RxSwift
 
 protocol MovieDatabaseProtocol {
     associatedtype ImageType
-    func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>>
+    func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel<ImageType>>
 }
 
 class MovieDatabaseWith<ImageType>: MovieDatabaseProtocol {
-    func getPopularMovies(with languageCode: String) -> Observable<Movie<ImageType>> {
+    func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel<ImageType>> {
         fatalError()
     }
 }

@@ -16,7 +16,7 @@ class DataFactoryService: DataFactory<[String: Any], UIImage> {
         formatter.dateFormat = "yyyy-MM-dd"
     }
     
-    override func getMovieData(from response: [String: Any]) throws -> MovieData {
+    override func getMovieDataModel(from response: [String: Any]) throws -> MovieDataModel {
         guard let title = response["title"],
             let overview = response["overview"],
             let posterPath = response["poster_path"],
@@ -25,7 +25,7 @@ class DataFactoryService: DataFactory<[String: Any], UIImage> {
             throw CommonError.parsingError
         }
             
-        return MovieData(
+        return MovieDataModel(
             title: title as! String,
             overview: overview as! String,
             posterPath: posterPath as! String,
@@ -33,17 +33,17 @@ class DataFactoryService: DataFactory<[String: Any], UIImage> {
             genreIds: genreIds as! [Int])
     }
     
-    override func getMovie(from data: MovieData, with poster: UIImage, genreMap: [Int: String]) throws -> Movie<UIImage> {
-        guard let date = formatter.date(from: data.releaseDate) else {
+    override func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel<UIImage> {
+        guard let date = formatter.date(from: dataModel.releaseDate) else {
             throw CommonError.parsingError
         }
         
-        return Movie(
-            title: data.title,
-            overview: data.overview,
+        return MovieViewModel(
+            title: dataModel.title,
+            overview: dataModel.overview,
             poster: poster,
             releaseDate: date,
-            genres: try data.genreIds.map({ genreId in
+            genres: try dataModel.genreIds.map({ genreId in
                 guard let genre = genreMap[genreId] else {
                     throw CommonError.parsingError
                 }
