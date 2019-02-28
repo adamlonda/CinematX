@@ -33,12 +33,23 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // FIXME: Remove force unwrap
+        guard movieForDetail != nil else {
+            handleUnexpectedError(
+                title: "Detail argument error",
+                message: "If you see this error, please fix a segue preparation on previous view.")
+            return
+        }
         
-        posterImage.image = movieForDetail!.poster
-        movieTitle.text = movieForDetail!.title
-        genre.text = movieForDetail!.genres.joined(separator: ", ")
-        movieOverview.text = movieForDetail!.overview
-        releaseDate.text = dateFormatter.string(from: movieForDetail!.releaseDate)
+        posterImage.image = movieForDetail?.poster
+        movieTitle.text = movieForDetail?.title
+        genre.text = movieForDetail?.genres.joined(separator: ", ")
+        movieOverview.text = movieForDetail?.overview
+        
+        guard let movieReleaseDate = movieForDetail?.releaseDate else {
+            releaseDate.text = ""
+            return
+        }
+        
+        releaseDate.text = dateFormatter.string(from: movieReleaseDate)
     }
 }

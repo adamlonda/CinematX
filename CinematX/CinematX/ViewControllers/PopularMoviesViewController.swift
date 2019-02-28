@@ -37,15 +37,6 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func handleInjectionError() {
-        let alert = UIAlertController(
-            title: "Dependency injection error",
-            message: "This error should not happen, if Swinject registrations are set up properly. If you see this message, please fix dependency injections.",
-            preferredStyle: .alert)
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     private func getPopularMovies() {
         popularMovies.removeAll()
         
@@ -63,7 +54,9 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
         
         guard  movieDb != nil else {
-            handleInjectionError()
+            handleUnexpectedError(
+                title: "Dependency injection error",
+                message: "This error should not happen, if Swinject registrations are set up properly. If you see this message, please fix dependency injections.")
             return
         }
         
