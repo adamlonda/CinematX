@@ -71,13 +71,30 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="nqW-FA-R8s"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pI0-bP-Qpz" userLabel="Connection Error View">
+                                <rect key="frame" x="16" y="88" width="343" height="690"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# Connection error" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-6o-ZPU" userLabel="Connection Error Label">
+                                        <rect key="frame" x="99" y="335" width="145" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ekk-Ev-ye2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="3gp-87-3Ep"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ekk-Ev-ye2" secondAttribute="trailing" constant="16" id="BY2-ly-JHN"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pI0-bP-Qpz" secondAttribute="trailing" constant="16" id="KP7-wx-Gm5"/>
                             <constraint firstItem="ekk-Ev-ye2" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QdL-Ea-wrU"/>
+                            <constraint firstItem="pI0-bP-Qpz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QeP-Jo-s64"/>
                             <constraint firstItem="ekk-Ev-ye2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="UFG-FO-3FT"/>
+                            <constraint firstItem="pI0-bP-Qpz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="mx0-2I-Ysq"/>
+                            <constraint firstItem="pI0-bP-Qpz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="rAM-qc-vnx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
