@@ -13,6 +13,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     typealias ImageType = UIImage
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var errorView: UIView!
     
     var movieDb: MovieDatabaseWith<ImageType>?
     private var popularMovies: [MovieViewModel<ImageType>]
@@ -24,20 +25,26 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         super.init(coder: aDecoder)
     }
     
-    private func alertConnectionError() {
-        let alert = UIAlertController(
-            title: NSLocalizedString("connectionError", comment: "Connection error title"),
-            message: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"),
-            preferredStyle: .alert)
+    private func showConnectionError() {
+//        let alert = UIAlertController(
+//            title: NSLocalizedString("connectionError", comment: "Connection error title"),
+//            message: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"),
+//            preferredStyle: .alert)
+//
+//        alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
+//            self.getPopularMovies()
+//        }))
+//
+//        self.present(alert, animated: true, completion: nil)
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
-            self.getPopularMovies()
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
+        collectionView.isHidden = true
+        errorView.isHidden = false
     }
     
     private func getPopularMovies() {
+        errorView.isHidden = true
+        collectionView.isHidden = false
+        
         popularMovies.removeAll()
         
         _ = movieDb?.getPopularMovies(with: languageCode).subscribe(
@@ -46,7 +53,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
                 self.collectionView.reloadSections(IndexSet(integer: 0))
         },
             onError: { error in
-                self.alertConnectionError()
+                self.showConnectionError()
         })
     }
 
@@ -60,6 +67,10 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
             return
         }
         
+        getPopularMovies()
+    }
+    
+    @IBAction func onTryAgain(_ sender: UIButton) {
         getPopularMovies()
     }
     

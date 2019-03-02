@@ -74,15 +74,28 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pI0-bP-Qpz" userLabel="Connection Error View">
                                 <rect key="frame" x="16" y="88" width="343" height="690"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="# Connection error" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-6o-ZPU" userLabel="Connection Error Label">
-                                        <rect key="frame" x="99" y="335" width="145" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="# Connection error" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-6o-ZPU" userLabel="Connection Error Label">
+                                        <rect key="frame" x="0.0" y="335" width="343" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fd0-cP-QNw" userLabel="Try Again Button">
+                                        <rect key="frame" x="133.66666666666666" y="363" width="76" height="30"/>
+                                        <state key="normal" title="# Try again"/>
+                                        <connections>
+                                            <action selector="onTryAgain:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVq-wb-xWQ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fd0-cP-QNw" firstAttribute="centerX" secondItem="pI0-bP-Qpz" secondAttribute="centerX" id="1Hd-XG-lp2"/>
+                                    <constraint firstItem="jZx-6o-ZPU" firstAttribute="leading" secondItem="pI0-bP-Qpz" secondAttribute="leading" id="563-3y-e2T"/>
+                                    <constraint firstItem="fd0-cP-QNw" firstAttribute="top" secondItem="jZx-6o-ZPU" secondAttribute="bottom" constant="7.6699999999999999" id="73c-ct-IAX"/>
+                                    <constraint firstItem="jZx-6o-ZPU" firstAttribute="centerY" secondItem="pI0-bP-Qpz" secondAttribute="centerY" id="Evy-WD-Osk"/>
+                                    <constraint firstAttribute="trailing" secondItem="jZx-6o-ZPU" secondAttribute="trailing" id="UU4-CP-Olo"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -101,6 +114,7 @@
                     <navigationItem key="navigationItem" title="# Popular movies" id="nLm-M0-UTi"/>
                     <connections>
                         <outlet property="collectionView" destination="ekk-Ev-ye2" id="MTA-If-xE8"/>
+                        <outlet property="errorView" destination="pI0-bP-Qpz" id="dWN-2b-Rtq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
