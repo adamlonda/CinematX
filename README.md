@@ -26,6 +26,7 @@ This app is a job interview project, written in my leisure time. It also happens
 
 ## Features not yet included
 
-* Popular movies filtering
+* Non-blocking UI feedback on network error
 * Trailers playback
+* Popular movies filtering via search bar
 * Unit tests
