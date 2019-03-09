@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:OfflineView/OfflineView.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CinematX.xcodeproj">
    </FileRef>
    <FileRef
