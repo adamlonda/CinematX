@@ -9,7 +9,9 @@
 import UIKit
 
 class OfflineView: UIView {
-
+    @IBOutlet private weak var errorLabel: UILabel!
+    @IBOutlet private weak var tryAgainButton: UIButton!
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
