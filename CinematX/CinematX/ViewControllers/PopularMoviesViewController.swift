@@ -6,6 +6,7 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import OfflineView
 import RxSwift
 import UIKit
 
@@ -39,6 +40,10 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         
         collectionView.isHidden = true
         errorView.isHidden = false
+    }
+    
+    private func presentOfflineView() {
+        fatalError()
     }
     
     private func getPopularMovies() {

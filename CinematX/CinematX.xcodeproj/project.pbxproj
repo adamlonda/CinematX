@@ -29,6 +29,8 @@
 		91A62FDA21F8E78500718A87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A62FD821F8E78500718A87 /* LaunchScreen.storyboard */; };
 		91A62FE521F8E78600718A87 /* CinematXTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FE421F8E78600718A87 /* CinematXTests.swift */; };
 		91A62FF021F8E78600718A87 /* CinematXUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A62FEF21F8E78600718A87 /* CinematXUITests.swift */; };
+		91F84F33223975C9005C8C5C /* OfflineView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F84F302239756C005C8C5C /* OfflineView.framework */; };
+		91F84F34223975C9005C8C5C /* OfflineView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 91F84F302239756C005C8C5C /* OfflineView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +48,42 @@
 			remoteGlobalIDString = 91A62FCB21F8E78300718A87;
 			remoteInfo = CinematX;
 		};
+		91F84F2F2239756C005C8C5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 91F84F082233CAC3005C8C5C;
+			remoteInfo = OfflineView;
+		};
+		91F84F312239756C005C8C5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 91F84F112233CAC3005C8C5C;
+			remoteInfo = OfflineViewTests;
+		};
+		91F84F35223975C9005C8C5C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 91F84F072233CAC3005C8C5C;
+			remoteInfo = OfflineView;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91F84F37223975C9005C8C5C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				91F84F34223975C9005C8C5C /* OfflineView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematX.release.xcconfig"; path = "Pods/Target Support Files/Pods-CinematX/Pods-CinematX.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +115,7 @@
 		91A62FEB21F8E78600718A87 /* CinematXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CinematXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A62FEF21F8E78600718A87 /* CinematXUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinematXUITests.swift; sourceTree = "<group>"; };
 		91A62FF121F8E78600718A87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OfflineView.xcodeproj; path = OfflineView/OfflineView.xcodeproj; sourceTree = "<group>"; };
 		B63B8C37750DFD9B79244BA0 /* Pods_CinematX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CinematX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1513749033EEED0D170EA62 /* Pods-CinematX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CinematX.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CinematX/Pods-CinematX.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				268BD53DCAEB8231D6471495 /* Pods_CinematX.framework in Frameworks */,
+				91F84F33223975C9005C8C5C /* OfflineView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +207,7 @@
 		91A62FC321F8E78300718A87 = {
 			isa = PBXGroup;
 			children = (
+				91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */,
 				910E7AF422070C450015CDB2 /* CinematXCommon */,
 				910E7AE421FD8C0D0015CDB2 /* CinematXModel */,
 				916B0EA121FC5C67008F8671 /* CinematXProtocols */,
@@ -224,6 +264,15 @@
 			path = CinematXUITests;
 			sourceTree = "<group>";
 		};
+		91F84F2B2239756C005C8C5C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91F84F302239756C005C8C5C /* OfflineView.framework */,
+				91F84F322239756C005C8C5C /* OfflineViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A05A72C09A006A616924AE30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,10 +293,12 @@
 				91A62FC921F8E78300718A87 /* Frameworks */,
 				91A62FCA21F8E78300718A87 /* Resources */,
 				8BE6F3AA7B2C60D60ADD91AF /* [CP] Embed Pods Frameworks */,
+				91F84F37223975C9005C8C5C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				91F84F36223975C9005C8C5C /* PBXTargetDependency */,
 			);
 			name = CinematX;
 			productName = CinematX;
@@ -324,6 +375,12 @@
 			mainGroup = 91A62FC321F8E78300718A87;
 			productRefGroup = 91A62FCD21F8E78300718A87 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 91F84F2B2239756C005C8C5C /* Products */;
+					ProjectRef = 91F84F2A2239756C005C8C5C /* OfflineView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				91A62FCB21F8E78300718A87 /* CinematX */,
@@ -332,6 +389,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		91F84F302239756C005C8C5C /* OfflineView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OfflineView.framework;
+			remoteRef = 91F84F2F2239756C005C8C5C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		91F84F322239756C005C8C5C /* OfflineViewTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OfflineViewTests.xctest;
+			remoteRef = 91F84F312239756C005C8C5C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		91A62FCA21F8E78300718A87 /* Resources */ = {
@@ -471,6 +545,11 @@
 			isa = PBXTargetDependency;
 			target = 91A62FCB21F8E78300718A87 /* CinematX */;
 			targetProxy = 91A62FEC21F8E78600718A87 /* PBXContainerItemProxy */;
+		};
+		91F84F36223975C9005C8C5C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OfflineView;
+			targetProxy = 91F84F35223975C9005C8C5C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +702,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D1513749033EEED0D170EA62 /* Pods-CinematX.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6KGZ86RN37;
@@ -642,6 +722,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 56717F08E472600CB30C7177 /* Pods-CinematX.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6KGZ86RN37;
