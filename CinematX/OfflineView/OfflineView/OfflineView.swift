@@ -40,16 +40,20 @@ public class OfflineView: UIView {
         contentView.autoresizingMask = []
         contentView.translatesAutoresizingMaskIntoConstraints = true
         
-        errorLabel.text = ""
-        tryAgainButton.titleLabel?.text = ""
+//        errorLabel.text = ""
+//        tryAgainButton.titleLabel?.text = ""
     }
     
-    public func set(errorLabel text: String) {
-        self.errorLabel.text = text
-    }
+//    public func set(errorLabel text: String) {
+//        self.errorLabel.text = text
+//    }
+//    
+//    public func set(tryAgainButtonLabel text: String) {
+//        self.tryAgainButton.titleLabel?.text = text
+//    }
     
-    public func set(tryAgainButtonLabel text: String) {
-        self.tryAgainButton.titleLabel?.text = text
+    public func set(isHidden value: Bool) {
+        self.contentView.isHidden = value
     }
 
     /*

@@ -16,6 +16,8 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var errorView: UIView!
     
+    private var offlineView: OfflineView?
+    
     var movieDb: MovieDatabaseWith<ImageType>?
     private var popularMovies: [MovieViewModel<ImageType>]
     
@@ -39,15 +41,17 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 //        self.present(alert, animated: true, completion: nil)
         
         collectionView.isHidden = true
-        errorView.isHidden = false
+        offlineView?.isHidden = false
+//        errorView.isHidden = false
     }
     
-    private func presentOfflineView() {
-        fatalError()
-    }
+//    private func presentOfflineView() {
+//        fatalError()
+//    }
     
     private func getPopularMovies() {
         errorView.isHidden = true
+        offlineView?.set(isHidden: true)
         collectionView.isHidden = false
         
         popularMovies.removeAll()
@@ -64,6 +68,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.offlineView = OfflineView(frame: self.view.bounds)
         
         guard  movieDb != nil else {
             handleUnexpectedError(
