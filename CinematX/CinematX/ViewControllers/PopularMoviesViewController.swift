@@ -40,9 +40,9 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 //
 //        self.present(alert, animated: true, completion: nil)
         
+        errorView.isHidden = true
         collectionView.isHidden = true
-        offlineView?.isHidden = false
-//        errorView.isHidden = false
+        offlineView?.set(isHidden: false)
     }
     
 //    private func presentOfflineView() {

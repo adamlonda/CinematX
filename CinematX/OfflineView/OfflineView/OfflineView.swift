@@ -33,15 +33,15 @@ public class OfflineView: UIView {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: self.nibName, bundle: bundle)
         
-        self.contentView = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        self.contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView
         addSubview(contentView)
         
         contentView.center = self.center
         contentView.autoresizingMask = []
         contentView.translatesAutoresizingMaskIntoConstraints = true
         
-//        errorLabel.text = ""
-//        tryAgainButton.titleLabel?.text = ""
+        errorLabel.text = "# Connection error"
+        tryAgainButton.titleLabel?.text = "# Try again"
     }
     
 //    public func set(errorLabel text: String) {
