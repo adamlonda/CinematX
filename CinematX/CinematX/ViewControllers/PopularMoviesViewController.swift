@@ -14,11 +14,10 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     typealias ImageType = UIImage
     
     @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var errorView: UIView!
-    
-    private var offlineView: OfflineView?
     
     var movieDb: MovieDatabaseWith<ImageType>?
+    
+    private var offlineView: OfflineView?
     private var popularMovies: [MovieViewModel<ImageType>]
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
@@ -29,30 +28,19 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     private func showConnectionError() {
-//        let alert = UIAlertController(
-//            title: NSLocalizedString("connectionError", comment: "Connection error title"),
-//            message: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"),
-//            preferredStyle: .alert)
-//
-//        alert.addAction(UIAlertAction(title: NSLocalizedString("Try again", comment: "Try again label"), style: .default, handler: { action in
-//            self.getPopularMovies()
-//        }))
-//
-//        self.present(alert, animated: true, completion: nil)
-        
-        errorView.isHidden = true
         collectionView.isHidden = true
-        offlineView?.set(isHidden: false)
+        
+        guard offlineView == nil else {
+            view.addSubview(offlineView!)
+            return
+        }
+        
+        fatalError()
     }
     
-//    private func presentOfflineView() {
-//        fatalError()
-//    }
-    
     private func getPopularMovies() {
-        errorView.isHidden = true
-        offlineView?.set(isHidden: true)
         collectionView.isHidden = false
+        offlineView?.removeFromSuperview()
         
         popularMovies.removeAll()
         
@@ -68,20 +56,18 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.offlineView = OfflineView(frame: self.view.bounds)
         
-        guard  movieDb != nil else {
-            handleUnexpectedError(
-                title: "Dependency injection error",
-                message: "This error should not happen, if Swinject registrations are set up properly. If you see this message, please fix dependency injections.")
+        self.offlineView = OfflineView(frame: self.view.bounds)
+        self.offlineView?.set(errorLabel: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"))
+        self.offlineView?.set(tryAgainButtonLabel: NSLocalizedString("Try again", comment: "Try again label"))
+        // TODO: Inject on-try-again callback
+        
+        guard  movieDb == nil else {
+            getPopularMovies()
             return
         }
         
-        getPopularMovies()
-    }
-    
-    @IBAction func onTryAgain(_ sender: UIButton) {
-        getPopularMovies()
+        fatalError()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

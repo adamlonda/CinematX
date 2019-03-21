@@ -39,21 +39,14 @@ public class OfflineView: UIView {
         contentView.center = self.center
         contentView.autoresizingMask = []
         contentView.translatesAutoresizingMaskIntoConstraints = true
-        
-        errorLabel.text = "# Connection error"
-        tryAgainButton.titleLabel?.text = "# Try again"
     }
     
-//    public func set(errorLabel text: String) {
-//        self.errorLabel.text = text
-//    }
-//    
-//    public func set(tryAgainButtonLabel text: String) {
-//        self.tryAgainButton.titleLabel?.text = text
-//    }
+    public func set(errorLabel text: String) {
+        self.errorLabel.text = text
+    }
     
-    public func set(isHidden value: Bool) {
-        self.contentView.isHidden = value
+    public func set(tryAgainButtonLabel text: String) {
+        self.tryAgainButton.setTitle(text, for: .normal)
     }
 
     /*

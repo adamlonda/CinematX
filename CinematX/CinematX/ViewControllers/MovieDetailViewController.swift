@@ -34,10 +34,7 @@ class MovieDetailViewController: UIViewController {
         super.viewDidLoad()
         
         guard movieForDetail != nil else {
-            handleUnexpectedError(
-                title: "Detail argument error",
-                message: "If you see this error, please fix a segue preparation on previous view.")
-            return
+            fatalError()
         }
         
         posterImage.image = movieForDetail?.poster
