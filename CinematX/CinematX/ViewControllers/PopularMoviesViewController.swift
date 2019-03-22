@@ -60,7 +60,8 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         self.offlineView = OfflineView(frame: self.view.bounds)
         self.offlineView?.set(errorLabel: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"))
         self.offlineView?.set(tryAgainButtonLabel: NSLocalizedString("Try again", comment: "Try again label"))
-        // TODO: Inject on-try-again callback
+        self.offlineView?.set(tryAgainButtonSelector: self.getPopularMovies)
+        // TODO: Add constraints programatically
         
         guard  movieDb == nil else {
             getPopularMovies()

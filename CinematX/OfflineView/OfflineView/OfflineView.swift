@@ -16,15 +16,19 @@ public class OfflineView: UIView {
     let nibName = "OfflineView"
     var contentView: UIView!
     
+    private var tryAgainSelector: () -> Void
+    
     // MARK: Set Up View
     public override init(frame: CGRect) {
         // For use in code
+        self.tryAgainSelector = {}
         super.init(frame: frame)
         setUpView()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         // For use in Interface Builder
+        self.tryAgainSelector = {}
         super.init(coder: aDecoder)
         setUpView()
     }
@@ -39,6 +43,8 @@ public class OfflineView: UIView {
         contentView.center = self.center
         contentView.autoresizingMask = []
         contentView.translatesAutoresizingMaskIntoConstraints = true
+        
+        self.tryAgainButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
     public func set(errorLabel text: String) {
@@ -47,6 +53,14 @@ public class OfflineView: UIView {
     
     public func set(tryAgainButtonLabel text: String) {
         self.tryAgainButton.setTitle(text, for: .normal)
+    }
+    
+    public func set(tryAgainButtonSelector selector: @escaping () -> Void) {
+        self.tryAgainSelector = selector
+    }
+    
+    @objc private func buttonTapped(sender : UIButton) {
+        self.tryAgainSelector()
     }
 
     /*
