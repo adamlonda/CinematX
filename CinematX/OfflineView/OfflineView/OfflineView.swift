@@ -10,11 +10,12 @@ import UIKit
 
 // https://medium.com/flawless-app-stories/getting-started-with-reusable-frameworks-for-ios-development-f00d74827d11
 public class OfflineView: UIView {
+    @IBOutlet var contentView: UIView!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var tryAgainButton: UIButton!
     
-    let nibName = "OfflineView"
-    var contentView: UIView!
+    private let nibName = "OfflineView"
+//    var contentView: UIView!
     
     private var tryAgainSelector: () -> Void
     
@@ -34,15 +35,21 @@ public class OfflineView: UIView {
     }
     
     private func setUpView() {
-        let bundle = Bundle(for: type(of: self))
-        let nib = UINib(nibName: self.nibName, bundle: bundle)
+//        let bundle = Bundle(for: type(of: self))
+//        let nib = UINib(nibName: self.nibName, bundle: bundle)
+//
+//        self.contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView
+//        addSubview(contentView)
+//
+//        contentView.center = self.center
+//        contentView.autoresizingMask = []
+//        contentView.translatesAutoresizingMaskIntoConstraints = true
         
-        self.contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView
+        Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         addSubview(contentView)
         
-        contentView.center = self.center
-        contentView.autoresizingMask = []
-        contentView.translatesAutoresizingMaskIntoConstraints = true
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         self.tryAgainButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
