@@ -14,13 +14,13 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var movieDb: MovieDatabaseWith<ImageType>?
-    private var popularMovies: [MovieViewModel<ImageType>]
+    var movieDb: MovieDatabaseProtocol?
+    private var popularMovies: [MovieViewModel]
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
     
     required init?(coder aDecoder: NSCoder) {
-        self.popularMovies = [MovieViewModel<ImageType>]()
+        self.popularMovies = [MovieViewModel]()
         super.init(coder: aDecoder)
     }
     

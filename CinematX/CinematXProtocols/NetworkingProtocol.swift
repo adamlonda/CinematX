@@ -7,19 +7,9 @@
 //
 
 import RxSwift
+import UIKit
 
 protocol NetworkingProtocol {
-    associatedtype ImageType
     func getJson(from url: String) -> Observable<[String: Any]>
-    func getImage(from url: String) -> Observable<ImageType>
-}
-
-class NetworkingWith<ImageType>: NetworkingProtocol {
-    func getJson(from url: String) -> Observable<[String: Any]> {
-        fatalError()
-    }
-    
-    func getImage(from url: String) -> Observable<ImageType> {
-        fatalError()
-    }
+    func getImage(from url: String) -> Observable<UIImage>
 }
