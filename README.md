@@ -1,9 +1,9 @@
 # CinematX
 
 * **Xcode version:** 
-  * **Written in** 10.1 (10BB61)
+  * **Written in** 10.2 (10E125)
   * **Compatible with** 9.3 or higher
-* **iOS Deployment target:** 12.1
+* **iOS Deployment target:** 12.1 (Please **DO NOT** use the 12.2 simulators, yet - causes SIGABRT on run.)
 * **Minimum iOS version:** 8.0 (See Podfile)
 
 Because of several CocoaPods packages are being used in the solution, please open the project using **CinematX.xcworkspace**.
