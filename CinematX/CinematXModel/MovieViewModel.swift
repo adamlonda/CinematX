@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import UIKit
 
-struct MovieViewModel<ImageType> {
+struct MovieViewModel {
     let title: String
     let overview: String
-    let poster: ImageType
+    let poster: UIImage
     let releaseDate: Date
     let genres: [String]
 
-    init(title: String, overview: String, poster: ImageType, releaseDate: Date, genres: [String]) {
+    init(title: String, overview: String, poster: UIImage, releaseDate: Date, genres: [String]) {
         self.title = title
         self.overview = overview
         self.poster = poster

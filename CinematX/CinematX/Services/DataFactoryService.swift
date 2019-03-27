@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DataFactoryService: DataFactory<[String: Any], UIImage> {
+class DataFactoryService: DataFactory<[String: Any]> {
     private let formatter: DateFormatter
     
     override init() {
@@ -33,7 +33,7 @@ class DataFactoryService: DataFactory<[String: Any], UIImage> {
             genreIds: genreIds as! [Int])
     }
     
-    override func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel<UIImage> {
+    override func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel {
         guard let date = formatter.date(from: dataModel.releaseDate) else {
             throw CommonError.parsingError
         }

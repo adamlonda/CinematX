@@ -11,26 +11,25 @@ import SwinjectStoryboard
 extension SwinjectStoryboard {
     class func setup () {
         typealias JsonResponse = [String: Any]
-        typealias ImageType = UIImage
         
         let swinject = defaultContainer
         
-        swinject.register(NetworkingWith<ImageType>.self) {
+        swinject.register(Networking<JsonResponse>.self) {
             _ in NetworkingService()
         }
         
-        swinject.register(DataFactory<JsonResponse, ImageType>.self) {
+        swinject.register(DataFactory<JsonResponse>.self) {
             _ in DataFactoryService()
         }
         
-        swinject.register(MovieDatabaseWith<ImageType>.self) {
+        swinject.register(MovieDatabaseProtocol.self) {
             r in TheMovieDatabaseService(
-                network: r.resolve(NetworkingWith<ImageType>.self)!,
-                dataFactory: r.resolve(DataFactory<JsonResponse, ImageType>.self)!)
+                network: r.resolve(Networking<JsonResponse>.self)!,
+                dataFactory: r.resolve(DataFactory<JsonResponse>.self)!)
         }
         
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in
-            c.movieDb = r.resolve(MovieDatabaseWith<ImageType>.self)
+            c.movieDb = r.resolve(MovieDatabaseProtocol.self)
         }
     }
 }

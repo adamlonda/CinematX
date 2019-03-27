@@ -6,24 +6,24 @@
 //  Copyright © 2019 Adam Londa. All rights reserved.
 //
 
+import UIKit
+
 protocol DataFactoryProtocol {
     associatedtype UnparsedData
-    associatedtype ImageType
     
     func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel
-    func getMovieViewModel(from dataModel: MovieDataModel, with poster: ImageType, genreMap: [Int: String]) throws -> MovieViewModel<ImageType>
+    func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel
     func getGenreMap(from response: UnparsedData) throws -> [Int: String]
 }
 
-class DataFactory<FromType, WithImage>: DataFactoryProtocol {
-    typealias UnparsedData = FromType
-    typealias ImageType = WithImage
+class DataFactory<UnparsedDataType>: DataFactoryProtocol {
+    typealias UnparsedData = UnparsedDataType
     
     func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel {
         fatalError()
     }
     
-    func getMovieViewModel(from dataModel: MovieDataModel, with poster: ImageType, genreMap: [Int: String]) throws -> MovieViewModel<ImageType> {
+    func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel {
         fatalError()
     }
     

@@ -12,9 +12,9 @@ class PopularMovieCollectionCell: UICollectionViewCell {
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var title: UILabel!
     
-    var movie: MovieViewModel<UIImage>!
+    var movie: MovieViewModel!
     
-    func displayContent(from movie: MovieViewModel<UIImage>) {
+    func displayContent(from movie: MovieViewModel) {
         self.posterImage.image = movie.poster
         self.title.text = movie.title
         self.movie = movie
