@@ -15,10 +15,10 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet var collectionView: UICollectionView!
     
-    var movieDb: MovieDatabaseWith<ImageType>?
+    var movieDb: MovieDatabaseProtocol?
     
 //    private var offlineView: OfflineView?
-    private var popularMovies: [MovieViewModel<ImageType>]
+    private var popularMovies: [MovieViewModel]
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
     
