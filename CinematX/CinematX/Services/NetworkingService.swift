@@ -17,7 +17,7 @@ enum NetworkingServiceError: Error {
 // Inspired by
 // https://gist.github.com/cmoulton/9591be2b10043e6811a845f6dcbe821a#file-simple-alamofire-calls-in-swift-4
 // https://stackoverflow.com/questions/34134365/combining-alamofire-and-rxswift
-class NetworkingService: NetworkingWith<UIImage> {
+class NetworkingService: Networking<[String: Any]> {
     private func handle<In, Out>(response: DataResponse<In>, observer: AnyObserver<Out>) {
         guard response.result.error == nil else {
             observer.onError(response.result.error!)

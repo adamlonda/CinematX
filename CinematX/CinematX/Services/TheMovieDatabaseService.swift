@@ -9,12 +9,11 @@
 import RxSwift
 import UIKit
 
-class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
+class TheMovieDatabaseService: MovieDatabaseProtocol {
     typealias JsonResponse = [String: Any]
-    typealias ImageType = UIImage
     
-    private let network: NetworkingWith<ImageType>
-    private let dataFactory: DataFactory<JsonResponse, ImageType>
+    private let network: Networking<JsonResponse>
+    private let dataFactory: DataFactory<JsonResponse>
     
     private let baseApiUrl: String = "https://api.themoviedb.org/3"
     private let apiKey: String = "40a81d1f384835eaee99ce0f3f6f1e7b"
@@ -22,13 +21,13 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     private let baseImgUrl: String = "https://image.tmdb.org/t/p/"
     private let imageDim: String = "w500"
     
-    required init(network: NetworkingWith<ImageType>, dataFactory: DataFactory<JsonResponse, ImageType>) {
+    required init(network: Networking<JsonResponse>, dataFactory: DataFactory<JsonResponse>) {
         self.network = network
         self.dataFactory = dataFactory
     }
     
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
-    private func getMoviePoster(from path: String) -> Observable<ImageType> {
+    private func getMoviePoster(from path: String) -> Observable<UIImage> {
         let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
         return self.network.getImage(from: url)
     }
@@ -69,8 +68,8 @@ class TheMovieDatabaseService: MovieDatabaseWith<UIImage> {
     }
     
     // https://developers.themoviedb.org/3/movies/get-popular-movies
-    override func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel<ImageType>> {
-        return Observable<MovieViewModel<ImageType>>.create { (observer) -> Disposable in
+    func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel> {
+        return Observable<MovieViewModel>.create { (observer) -> Disposable in
             _ = self.getRawResponseAndGenreMap(with: languageCode).subscribe(onNext: { resultPackage in
                 let rawResponse = resultPackage.0
                 let genreMap = resultPackage.1

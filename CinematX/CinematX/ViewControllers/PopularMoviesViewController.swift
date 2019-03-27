@@ -23,7 +23,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
     
     required init?(coder aDecoder: NSCoder) {
-        self.popularMovies = [MovieViewModel<ImageType>]()
+        self.popularMovies = [MovieViewModel]()
         super.init(coder: aDecoder)
     }
     
