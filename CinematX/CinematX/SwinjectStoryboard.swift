@@ -14,7 +14,7 @@ extension SwinjectStoryboard {
         
         let swinject = defaultContainer
         
-        swinject.register(NetworkingProtocol.self) {
+        swinject.register(Networking<JsonResponse>.self) {
             _ in NetworkingService()
         }
         
@@ -24,7 +24,7 @@ extension SwinjectStoryboard {
         
         swinject.register(MovieDatabaseProtocol.self) {
             r in TheMovieDatabaseService(
-                network: r.resolve(NetworkingProtocol.self)!,
+                network: r.resolve(Networking<JsonResponse>.self)!,
                 dataFactory: r.resolve(DataFactory<JsonResponse>.self)!)
         }
         

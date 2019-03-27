@@ -12,7 +12,7 @@ import UIKit
 class TheMovieDatabaseService: MovieDatabaseProtocol {
     typealias JsonResponse = [String: Any]
     
-    private let network: NetworkingProtocol
+    private let network: Networking<JsonResponse>
     private let dataFactory: DataFactory<JsonResponse>
     
     private let baseApiUrl: String = "https://api.themoviedb.org/3"
@@ -21,7 +21,7 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
     private let baseImgUrl: String = "https://image.tmdb.org/t/p/"
     private let imageDim: String = "w500"
     
-    required init(network: NetworkingProtocol, dataFactory: DataFactory<JsonResponse>) {
+    required init(network: Networking<JsonResponse>, dataFactory: DataFactory<JsonResponse>) {
         self.network = network
         self.dataFactory = dataFactory
     }
