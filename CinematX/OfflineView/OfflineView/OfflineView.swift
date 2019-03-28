@@ -45,7 +45,7 @@ public class OfflineView: UIView {
 //        contentView.autoresizingMask = []
 //        contentView.translatesAutoresizingMaskIntoConstraints = true
         
-        Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
+//        Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
         addSubview(contentView)
         
         contentView.frame = self.bounds

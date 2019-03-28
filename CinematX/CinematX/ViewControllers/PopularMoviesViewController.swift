@@ -13,7 +13,8 @@ import UIKit
 class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     typealias ImageType = UIImage
     
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var offlineView: OfflineView!
     
     var movieDb: MovieDatabaseProtocol?
     
@@ -29,6 +30,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     private func showConnectionError() {
         collectionView.isHidden = true
+        offlineView.isHidden = false
         
 //        guard offlineView == nil else {
 //            view.addSubview(offlineView!)
@@ -49,6 +51,7 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     private func getPopularMovies() {
         collectionView.isHidden = false
+        offlineView.isHidden = true
 //        offlineView?.removeFromSuperview()
         
         popularMovies.removeAll()
@@ -67,9 +70,9 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidLoad()
         
 //        self.offlineView = OfflineView(frame: self.view.bounds)
-//        self.offlineView?.set(errorLabel: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"))
-//        self.offlineView?.set(tryAgainButtonLabel: NSLocalizedString("Try again", comment: "Try again label"))
-//        self.offlineView?.set(tryAgainButtonSelector: self.getPopularMovies)
+        self.offlineView.set(errorLabel: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"))
+        self.offlineView.set(tryAgainButtonLabel: NSLocalizedString("Try again", comment: "Try again label"))
+        self.offlineView.set(tryAgainButtonSelector: self.getPopularMovies)
         
         guard  movieDb == nil else {
             getPopularMovies()
