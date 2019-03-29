@@ -10,12 +10,11 @@ import UIKit
 
 // https://medium.com/flawless-app-stories/getting-started-with-reusable-frameworks-for-ios-development-f00d74827d11
 public class OfflineView: UIView {
-    @IBOutlet var contentView: UIView!
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var tryAgainButton: UIButton!
     
     private let nibName = "OfflineView"
-//    var contentView: UIView!
+    var contentView: UIView!
     
     private var tryAgainSelector: () -> Void
     
@@ -35,17 +34,10 @@ public class OfflineView: UIView {
     }
     
     private func setUpView() {
-//        let bundle = Bundle(for: type(of: self))
-//        let nib = UINib(nibName: self.nibName, bundle: bundle)
-//
-//        self.contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView
-//        addSubview(contentView)
-//
-//        contentView.center = self.center
-//        contentView.autoresizingMask = []
-//        contentView.translatesAutoresizingMaskIntoConstraints = true
-        
-//        Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: self.nibName, bundle: bundle)
+
+        self.contentView = nib.instantiate(withOwner: self, options: nil).first as? UIView
         addSubview(contentView)
         
         contentView.frame = self.bounds

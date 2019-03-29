@@ -18,7 +18,6 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     var movieDb: MovieDatabaseProtocol?
     
-//    private var offlineView: OfflineView?
     private var popularMovies: [MovieViewModel]
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
@@ -31,28 +30,11 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     private func showConnectionError() {
         collectionView.isHidden = true
         offlineView.isHidden = false
-        
-//        guard offlineView == nil else {
-//            view.addSubview(offlineView!)
-//
-//            // TODO: Add constraints programatically
-//            offlineView?.translatesAutoresizingMaskIntoConstraints = false
-//
-//            self.offlineView?.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//            self.offlineView?.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//            self.offlineView?.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//            self.offlineView?.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//
-//            return
-//        }
-//
-//        fatalError()
     }
     
     private func getPopularMovies() {
         collectionView.isHidden = false
         offlineView.isHidden = true
-//        offlineView?.removeFromSuperview()
         
         popularMovies.removeAll()
         
@@ -69,7 +51,6 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.offlineView = OfflineView(frame: self.view.bounds)
         self.offlineView.set(errorLabel: NSLocalizedString("connectionErrorMessage", comment: "Connection error message"))
         self.offlineView.set(tryAgainButtonLabel: NSLocalizedString("Try again", comment: "Try again label"))
         self.offlineView.set(tryAgainButtonSelector: self.getPopularMovies)
