@@ -13,6 +13,7 @@ protocol NetworkingProtocol {
     associatedtype ResponseType
     func getJson(from url: String) -> Observable<ResponseType>
     func getImage(from url: String) -> Observable<UIImage>
+    func isNetworkAvailable() -> Bool
 }
 
 class Networking<ResponseImplementation>: NetworkingProtocol {
@@ -23,6 +24,10 @@ class Networking<ResponseImplementation>: NetworkingProtocol {
     }
     
     func getImage(from url: String) -> Observable<UIImage> {
+        fatalError()
+    }
+    
+    func isNetworkAvailable() -> Bool {
         fatalError()
     }
 }

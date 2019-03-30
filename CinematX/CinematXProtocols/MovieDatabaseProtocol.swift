@@ -9,5 +9,6 @@
 import RxSwift
 
 protocol MovieDatabaseProtocol {
+    func isOnline() -> Bool
     func getPopularMovies(with languageCode: String) -> Observable<MovieViewModel>
 }

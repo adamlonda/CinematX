@@ -58,4 +58,11 @@ class NetworkingService: Networking<[String: Any]> {
             })
         }
     }
+    
+    override func isNetworkAvailable() -> Bool {
+        guard let onlineFlag = NetworkReachabilityManager()?.isReachable else {
+            return false
+        }
+        return onlineFlag
+    }
 }

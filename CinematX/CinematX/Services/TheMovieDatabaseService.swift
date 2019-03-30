@@ -26,6 +26,10 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
         self.dataFactory = dataFactory
     }
     
+    func isOnline() -> Bool {
+        return network.isNetworkAvailable()
+    }
+    
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
     private func getMoviePoster(from path: String) -> Observable<UIImage> {
         let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"

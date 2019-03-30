@@ -33,6 +33,11 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     private func getPopularMovies() {
+        if (movieDb?.isOnline() != true) {
+            showConnectionError()
+            return
+        }
+        
         collectionView.isHidden = false
         offlineView.isHidden = true
         
