@@ -350,13 +350,16 @@
 				TargetAttributes = {
 					91A62FCB21F8E78300718A87 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					91A62FDF21F8E78600718A87 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 91A62FCB21F8E78300718A87;
 					};
 					91A62FEA21F8E78600718A87 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 91A62FCB21F8E78300718A87;
 					};
 				};
@@ -709,7 +712,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -729,7 +732,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -749,7 +752,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CinematX.app/CinematX";
 			};
@@ -770,7 +773,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematXTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CinematX.app/CinematX";
 			};
@@ -790,7 +793,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematXUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CinematX;
 			};
@@ -810,7 +813,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Adam-Londa.CinematXUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = CinematX;
 			};
