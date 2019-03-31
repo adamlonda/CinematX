@@ -24,9 +24,12 @@ This app is a job interview project, written in my leisure time. It also happens
 
 * RxSwift refactorization of the popular movies view controller & its services in use, no longer using the Futures pod for async code handling
 
-## Features not yet included
+## March 31st, 2019
 
 * Non-blocking UI feedback on network error
+
+## Features not yet included
+
 * Trailers playback
 * Popular movies filtering via search bar
 * Unit tests
