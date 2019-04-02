@@ -12,8 +12,9 @@ protocol DataFactoryProtocol {
     associatedtype UnparsedData
     
     func getMovieItemDataModel(from response: UnparsedData) throws -> MovieItemDataModel
-    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel
-    func getGenreMap(from response: UnparsedData) throws -> [Int: String]
+    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage) throws -> MovieItemViewModel
+//    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel
+//    func getGenreMap(from response: UnparsedData) throws -> [Int: String]
 }
 
 class DataFactory<UnparsedDataType>: DataFactoryProtocol {
@@ -23,11 +24,15 @@ class DataFactory<UnparsedDataType>: DataFactoryProtocol {
         fatalError()
     }
     
-    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel {
+    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage) throws -> MovieItemViewModel {
         fatalError()
     }
     
-    func getGenreMap(from response: UnparsedData) throws -> [Int: String] {
-        fatalError()
-    }
+//    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel {
+//        fatalError()
+//    }
+    
+//    func getGenreMap(from response: UnparsedData) throws -> [Int: String] {
+//        fatalError()
+//    }
 }

@@ -10,33 +10,49 @@ import Foundation
 import UIKit
 
 struct MovieItemDataModel {
+    let id: Int
     let title: String
-    let overview: String
+//    let overview: String
     let posterPath: String
-    let releaseDate: String
-    let genreIds: [Int]
-
-    init(title: String, overview: String, posterPath: String, releaseDate: String, genreIds: [Int]) {
+//    let releaseDate: String
+//    let genreIds: [Int]
+    
+    init(id: Int, title: String, posterPath: String) {
+        self.id = id
         self.title = title
-        self.overview = overview
         self.posterPath = posterPath
-        self.releaseDate = releaseDate
-        self.genreIds = genreIds
     }
+
+//    init(id: Int, title: String, overview: String, posterPath: String, releaseDate: String, genreIds: [Int]) {
+//        self.id = id
+//        self.title = title
+//        self.overview = overview
+//        self.posterPath = posterPath
+//        self.releaseDate = releaseDate
+//        self.genreIds = genreIds
+//    }
 }
 
 struct MovieItemViewModel {
+    let id: Int
     let title: String
-    let overview: String
+//    let overview: String
     let poster: UIImage
-    let releaseDate: Date
-    let genres: [String]
+//    let releaseDate: Date
+//    let genres: [String]
     
-    init(title: String, overview: String, poster: UIImage, releaseDate: Date, genres: [String]) {
+    init(id: Int, title: String, poster: UIImage) {
+        self.id = id
         self.title = title
-        self.overview = overview
         self.poster = poster
-        self.releaseDate = releaseDate
-        self.genres = genres
     }
+    
+//    init(id: Int, title: String, overview: String, poster: UIImage, releaseDate: Date, genres: [String]) {
+//        self.id = id
+//        self.title = title
+//        self.overview = overview
+//        self.poster = poster
+//        self.releaseDate = releaseDate
+//        self.genres = genres
+//    }
 }
