@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-    var movieForDetail: MovieViewModel?
+    var movieForDetail: MovieItemViewModel?
     
     @IBOutlet var posterImage: UIImageView!
     @IBOutlet var movieTitle: UILabel!

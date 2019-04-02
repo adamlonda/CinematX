@@ -18,12 +18,12 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     var movieDb: MovieDatabaseProtocol?
     
-    private var popularMovies: [MovieViewModel]
+    private var popularMovies: [MovieItemViewModel]
     
     private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
     
     required init?(coder aDecoder: NSCoder) {
-        self.popularMovies = [MovieViewModel]()
+        self.popularMovies = [MovieItemViewModel]()
         super.init(coder: aDecoder)
     }
     

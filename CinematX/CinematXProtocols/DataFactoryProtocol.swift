@@ -11,19 +11,19 @@ import UIKit
 protocol DataFactoryProtocol {
     associatedtype UnparsedData
     
-    func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel
-    func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel
+    func getMovieItemDataModel(from response: UnparsedData) throws -> MovieItemDataModel
+    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel
     func getGenreMap(from response: UnparsedData) throws -> [Int: String]
 }
 
 class DataFactory<UnparsedDataType>: DataFactoryProtocol {
     typealias UnparsedData = UnparsedDataType
     
-    func getMovieDataModel(from response: UnparsedData) throws -> MovieDataModel {
+    func getMovieItemDataModel(from response: UnparsedData) throws -> MovieItemDataModel {
         fatalError()
     }
     
-    func getMovieViewModel(from dataModel: MovieDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieViewModel {
+    func getMovieItemViewModel(from dataModel: MovieItemDataModel, with poster: UIImage, genreMap: [Int: String]) throws -> MovieItemViewModel {
         fatalError()
     }
     
