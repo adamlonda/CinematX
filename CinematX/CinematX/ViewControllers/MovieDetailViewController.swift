@@ -39,14 +39,14 @@ class MovieDetailViewController: UIViewController {
         
         posterImage.image = movieForDetail?.poster
         movieTitle.text = movieForDetail?.title
-        genre.text = movieForDetail?.genres.joined(separator: ", ")
-        movieOverview.text = movieForDetail?.overview
+//        genre.text = movieForDetail?.genres.joined(separator: ", ")
+//        movieOverview.text = movieForDetail?.overview
+//
+//        guard let movieReleaseDate = movieForDetail?.releaseDate else {
+//            releaseDate.text = ""
+//            return
+//        }
         
-        guard let movieReleaseDate = movieForDetail?.releaseDate else {
-            releaseDate.text = ""
-            return
-        }
-        
-        releaseDate.text = dateFormatter.string(from: movieReleaseDate)
+//        releaseDate.text = dateFormatter.string(from: movieReleaseDate)
     }
 }
