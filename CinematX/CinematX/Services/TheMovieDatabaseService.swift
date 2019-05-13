@@ -98,30 +98,36 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
 //        }
 //    }
     
-    // REFAC ME!
+    // TODO: Refac me!
     // https://developers.themoviedb.org/3/movies/get-popular-movies
     func getPopularMovies(with languageCode: String) -> Observable<MovieItemViewModel> {
         return Observable<MovieItemViewModel>.create { (observer) -> Disposable in
             let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
             
-            _ = self.network.getJson(from: popularMoviesUrl).subscribe(onNext: { json in
-                _ = self.getMovieItemsData(from: json).subscribe(onNext: { movieData in
-                    _ = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
-                        do {
-                            let movie = try self.dataFactory.getMovieItemViewModel(from: movieData, with: moviePoster)
-                            observer.onNext(movie)
-                        } catch {
-                            observer.onError(error)
-                        }
-                    })
-                },
-                    onError: { error in
-                        observer.onError(error)
-                })
-            },
-                onError: { error in
-                    observer.onError(error)
-            })
+//            _ = self.network.getJson(from: popularMoviesUrl).subscribe(onNext: { json in
+//                _ = self.getMovieItemsData(from: json).subscribe(onNext: { movieData in
+//                    _ = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
+//                        do {
+//                            let movie = try self.dataFactory.getMovieItemViewModel(from: movieData, with: moviePoster)
+//                            observer.onNext(movie)
+//                        } catch {
+//                            observer.onError(error)
+//                        }
+//                    })
+//                },
+//                    onError: { error in
+//                        observer.onError(error)
+//                })
+//            },
+//                onError: { error in
+//                    observer.onError(error)
+//            })
+            
+            self.network.getJson(from: popularMoviesUrl)
+                .map({ response in self.getMovieItemsData(from: response) })
+                .flatMap({ self.getMoviePoster(from: $0.posterPath) })
+            
+            fatalError("Not implemented")
             
             return Disposables.create()
         }
