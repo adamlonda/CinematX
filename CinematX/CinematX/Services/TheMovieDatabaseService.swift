@@ -31,9 +31,10 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
     }
     
     // https://developers.themoviedb.org/3/configuration/get-api-configuration
-    private func getMoviePoster(from path: String) -> Observable<UIImage> {
-        let url = "\(self.baseImgUrl)\(self.imageDim)\(path)"
+    private func getMoviePoster(from model: MovieItemDataModel) -> Observable<(MovieItemDataModel, UIImage)> {
+        let url = "\(self.baseImgUrl)\(self.imageDim)\(model.posterPath)"
         return self.network.getImage(from: url)
+            .map({ image in (model, image) })
     }
     
     private func getMovieItemsData(from response: JsonResponse) -> Observable<MovieItemDataModel> {
@@ -55,81 +56,12 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
         }
     }
     
-//    // https://developers.themoviedb.org/3/genres/get-movie-list
-//    private func getRawResponseAndGenreMap(with languageCode: String) -> Observable<([String: Any], [Int: String])> {
-//        let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-//        let genreMapUrl = "\(self.baseApiUrl)/genre/movie/list?api_key=\(self.apiKey)&language=\(languageCode)"
-//
-//        let rawResponseStream = self.network.getJson(from: popularMoviesUrl)
-//        let genreMapStream = self.network.getJson(from: genreMapUrl)
-//            .map({ json in
-//                try self.dataFactory.getGenreMap(from: json)
-//            })
-//
-//        return Observable.zip(rawResponseStream, genreMapStream, resultSelector: { rawResponse, genreMap in
-//            return (rawResponse, genreMap)
-//        })
-//    }
-    
-//    // https://developers.themoviedb.org/3/movies/get-popular-movies
-//    func getPopularMovies(with languageCode: String) -> Observable<MovieItemViewModel> {
-//        return Observable<MovieItemViewModel>.create { (observer) -> Disposable in
-//            _ = self.getRawResponseAndGenreMap(with: languageCode).subscribe(onNext: { resultPackage in
-//                let rawResponse = resultPackage.0
-//                let genreMap = resultPackage.1
-//
-//                _ = self.getMovieItemsData(from: rawResponse).subscribe(
-//                    onNext: { movieData in
-//                        _ = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
-//                            do {
-//                                let movie = try self.dataFactory.getMovieItemViewModel(from: movieData, with: moviePoster, genreMap: genreMap)
-//                                observer.onNext(movie)
-//                            } catch {
-//                                observer.onError(error)
-//                            }
-//                        })
-//                },
-//                    onError: { error in
-//                        observer.onError(error)
-//                })
-//            })
-//
-//            return Disposables.create()
-//        }
-//    }
-    
-    // TODO: Refac me!
     // https://developers.themoviedb.org/3/movies/get-popular-movies
     func getPopularMovies(with languageCode: String) -> Observable<MovieItemViewModel> {
-        return Observable<MovieItemViewModel>.create { (observer) -> Disposable in
-            let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
-            
-//            _ = self.network.getJson(from: popularMoviesUrl).subscribe(onNext: { json in
-//                _ = self.getMovieItemsData(from: json).subscribe(onNext: { movieData in
-//                    _ = self.getMoviePoster(from: movieData.posterPath).subscribe(onNext: { moviePoster in
-//                        do {
-//                            let movie = try self.dataFactory.getMovieItemViewModel(from: movieData, with: moviePoster)
-//                            observer.onNext(movie)
-//                        } catch {
-//                            observer.onError(error)
-//                        }
-//                    })
-//                },
-//                    onError: { error in
-//                        observer.onError(error)
-//                })
-//            },
-//                onError: { error in
-//                    observer.onError(error)
-//            })
-            
-            self.network.getJson(from: popularMoviesUrl)
-                .map({ response in self.getMovieItemsData(from: response) })
-                .flatMap({ self.getMoviePoster(from: $0.posterPath) })
-            
-            fatalError("Not implemented")
-            
-            return Disposables.create()
-        }
+        let popularMoviesUrl = "\(self.baseApiUrl)/movie/popular?api_key=\(self.apiKey)&language=\(languageCode)"
+        return self.network.getJson(from: popularMoviesUrl)
+            .flatMap({ response in self.getMovieItemsData(from: response) })
+            .flatMap({ model in self.getMoviePoster(from: model) })
+            .map({ posteredModel in try self.dataFactory.getMovieItemViewModel(from: posteredModel.0, with: posteredModel.1) })
     }
 }
