@@ -31,5 +31,9 @@ extension SwinjectStoryboard {
         swinject.storyboardInitCompleted(PopularMoviesViewController.self) { r, c in
             c.movieDb = r.resolve(MovieDatabaseProtocol.self)
         }
+        
+        swinject.storyboardInitCompleted(MovieDetailViewController.self) { r, c in
+            c.movieDb = r.resolve(MovieDatabaseProtocol.self)
+        }
     }
 }

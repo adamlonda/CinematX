@@ -64,4 +64,9 @@ class TheMovieDatabaseService: MovieDatabaseProtocol {
             .flatMap({ model in self.getMoviePoster(from: model) })
             .map({ posteredModel in try self.dataFactory.getMovieItemViewModel(from: posteredModel.0, with: posteredModel.1) })
     }
+    
+    func getMovieDetail(id: Int, with languageCode: String) -> Observable<MovieDetail> {
+        let url = "\(self.baseApiUrl)/movie/\(id)?api_key=\(self.apiKey)&language=\(languageCode)"
+        fatalError("Not implemented")
+    }
 }

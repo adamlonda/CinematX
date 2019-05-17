@@ -10,7 +10,7 @@ import OfflineView
 import RxSwift
 import UIKit
 
-class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class PopularMoviesViewController: ViewControllerBase, UICollectionViewDelegate, UICollectionViewDataSource {
     typealias ImageType = UIImage
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,14 +20,12 @@ class PopularMoviesViewController: UIViewController, UICollectionViewDelegate, U
     
     private var popularMovies: [MovieItemViewModel]
     
-    private let languageCode = NSLocalizedString("apiLanguageCode", comment: "API language code")
-    
     required init?(coder aDecoder: NSCoder) {
         self.popularMovies = [MovieItemViewModel]()
         super.init(coder: aDecoder)
     }
     
-    private func showConnectionError() {
+    override internal func showConnectionError() {
         collectionView.isHidden = true
         offlineView.isHidden = false
     }

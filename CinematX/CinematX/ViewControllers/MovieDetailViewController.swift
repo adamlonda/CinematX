@@ -8,7 +8,8 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+class MovieDetailViewController: ViewControllerBase {
+    var movieDb: MovieDatabaseProtocol?
     var movieForDetail: MovieItemViewModel?
     
     @IBOutlet var posterImage: UIImageView!
@@ -33,12 +34,20 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard movieForDetail != nil else {
-            fatalError()
+        guard let id = movieForDetail?.id else {
+            fatalError("Should not happen.")
         }
         
-        posterImage.image = movieForDetail?.poster
-        movieTitle.text = movieForDetail?.title
+        _ = self.movieDb?.getMovieDetail(id: id, with: languageCode).subscribe(
+            onNext: { movieDetail in
+                self.posterImage.image = self.movieForDetail?.poster
+                self.movieTitle.text = self.movieForDetail?.title
+        },
+            onError: { error in
+                self.showConnectionError()
+        })
+        
+        
 //        genre.text = movieForDetail?.genres.joined(separator: ", ")
 //        movieOverview.text = movieForDetail?.overview
 //
